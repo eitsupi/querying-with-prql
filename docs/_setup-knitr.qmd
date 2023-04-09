@@ -1,0 +1,21 @@
+```{r}
+#| include: false
+#| cache: false
+library(knitr)
+library(glue)
+library(prqlr)
+
+# Set SQL code blocks print option
+knitr::opts_knit$set(sql.print = \(x) paste(knitr::kable(x, format = "markdown"), collapse = "\n"))
+
+# readr package option
+options(readr.show_col_types = FALSE)
+```
+
+:::{.callout-important}
+
+Since the PRQL and SQL results shown on this page are after being converted to R DataFrame via knitr,
+they have been converted from DuckDB types to R types.
+So `NULL` in DuckDB is shown as `NA`.
+
+:::

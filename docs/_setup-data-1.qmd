@@ -1,0 +1,88 @@
+## Preparing Data
+
+Download the data to be analysis (zipped CSV file) and write the data to a Parquet file.
+
+I use R here, but we can do it in another language, or, manually download and unzip and
+create the Parquet file (with DuckDB CLI).
+
+```{r}
+#| cache: false
+#| code-fold: true
+#| warning: false
+# Create "data" directory, download the zip file into the directory, and create a Parquet file.
+data_dir <- "data"
+dest <- file.path(data_dir, "flights.csv.zip")
+parquet_path <- file.path(data_dir, "data.parquet")
+
+if (!fs::file_exists(parquet_path)) {
+  if (!fs::file_exists(dest)) {
+    fs::dir_create(data_dir)
+    curl::curl_download(
+      "https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2022_1.zip",
+      dest,
+      handle = curl::new_handle(ssl_verifypeer = FALSE)
+    )
+  }
+  df <- readr::read_csv(dest)
+  # Unlike the Python client, the duckdb R client does not (yet) have automatic DataFrame registration.
+  # (duckdb/duckdb#6771)
+  con_tmp <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
+  duckdb::duckdb_register(con_tmp, "df", df)
+  duckdb::sql(glue::glue("COPY df TO '{parquet_path}' (FORMAT PARQUET)"), con_tmp)
+  DBI::dbDisconnect(con_tmp)
+}
+```
+
+After the Parquet file is ready,
+load it into DuckDB (in-memory) database table, R DataFrame, and Python polars.LazyFrame.
+
+:::{.panel-tabset}
+
+### DuckDB
+
+```{r}
+#| cache: false
+#| include: false
+con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
+```
+
+```{glue_sql}
+#| cache: false
+#| warning: false
+CREATE TABLE tab AS SELECT * FROM 'data/data.parquet'
+```
+
+```{glue_sql}
+FROM tab LIMIT 5
+```
+
+### R DataFrame
+
+```{r}
+#| cache: false
+#| output: false
+library(dplyr, warn.conflicts = FALSE)
+
+df <- duckdb::sql("FROM 'data/data.parquet'")
+```
+
+```{r}
+df |>
+  head(5)
+```
+
+### Python polars.LazyFrame
+
+```{python}
+#| cache: false
+#| output: false
+import polars as pl
+
+lf = pl.scan_parquet("data/data.parquet")
+```
+
+```{python}
+lf.fetch(5)
+```
+
+:::

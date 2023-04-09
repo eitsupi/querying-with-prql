@@ -1,0 +1,267 @@
+---
+title: Selecting and Filtering
+description: Selecting columns and filtering rows from a table.
+engine: knitr
+knitr:
+  opts_chunk:
+    connection: con
+    engine-opts:
+      target: sql.duckdb
+      use_glue: true
+execute:
+  cache: true
+sidebar_position: 2
+---
+
+:::{.callout-note}
+
+This page is based on the chapter ["Indexing (Or Lack Thereof)"](https://kevinheavey.github.io/modern-polars/indexing.html)
+of the Modern Polars book.
+
+:::
+
+{{< include _setup-knitr.qmd >}}
+
+{{< include _setup-data-1.qmd >}}
+
+## Read the data with PRQL
+
+Since PRQL cannot be used to create tables, data must be read from pre-created tables in a DB.
+
+But when PRQL is used on DuckDB, it is possible to treat Parquet and other files as tables,
+so that PRQL queries can be executed without creating tables.
+
+:::{.callout-important}
+
+PRQL 0.7 does not support `` from `data/foo.csv` ``,
+so we need to write raw SQL in [S-strings](https://prql-lang.org/book/language-features/s-strings.html) now.
+([PRQL/prql#1535](https://github.com/PRQL/prql/issues/1535))
+
+:::
+
+```{prql}
+from s"""
+select *
+from '{{parquet_path}}'
+"""
+take 5
+```
+
+## Selecting columns and slicing rows
+
+For column selection, the syntax is much the same, but the syntax for row selection using position looks different.
+
+Note that PRQL, SQL, and R are 1-based, while Python is 0-based.
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+from tab
+select [Dest, Tail_Number]
+take 13..16
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+SELECT
+  Dest,
+  Tail_Number
+FROM tab
+LIMIT 4 OFFSET 12
+```
+
+:::{.callout-tip}
+
+DuckDB allows SQL query starts with `FROM`,
+so we can also write the query as follows:
+
+```{.sql}
+FROM tab
+SELECT
+  Dest,
+  Tail_Number
+LIMIT 4 OFFSET 12
+```
+
+:::
+
+### dplyr R
+
+```{r}
+df |>
+  select(Dest, Tail_Number) |>
+  slice(13:16)
+```
+
+### Python Polars
+
+```{python}
+(
+    lf
+    .select("Dest", "Tail_Number")
+    .head(16)
+    .tail(4)
+    .collect()
+)
+```
+
+:::
+
+## Filtering rows
+
+Since PRQL does not have something like the `IN` operator of SQL now
+([PRQL/prql#993](https://github.com/PRQL/prql/issues/993)),
+the `filter` statement in PRQL is a bit redundant.
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+:::{.callout-important}
+
+`or` is likely to be changed to `||` in the future.
+([PRQL/prql#2170](https://github.com/PRQL/prql/issues/2170))
+
+:::
+
+```{prql}
+from tab
+filter IATA_CODE_Reporting_Airline == 'AA' or IATA_CODE_Reporting_Airline == 'DL'
+take 5
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+FROM tab
+WHERE IATA_CODE_Reporting_Airline IN ('AA', 'DL')
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+df |>
+  filter(IATA_CODE_Reporting_Airline %in% c("AA", "DL")) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+(
+  lf.filter(pl.col("IATA_CODE_Reporting_Airline").is_in(["AA", "DL"]))
+  .head(5)
+  .collect()
+)
+```
+
+:::
+
+## Assigning
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+let f = from_text format:json """{
+  "columns": ["a", "b"],
+  "data": [
+    [1, 10],
+    [2, 20],
+    [3, 30],
+    [4, 40],
+    [5, 50]
+  ]
+}"""
+
+from f
+select [ # Note: can't use `derive` here https://github.com/PRQL/prql/issues/2392
+  a,
+  b = case [
+    a <= 3 => b / 10,
+    true => b
+  ]
+]
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+WITH table_0 AS (
+  SELECT
+    1 AS a,
+    10 AS b
+  UNION
+  ALL
+  SELECT
+    2 AS a,
+    20 AS b
+  UNION
+  ALL
+  SELECT
+    3 AS a,
+    30 AS b
+  UNION
+  ALL
+  SELECT
+    4 AS a,
+    40 AS b
+  UNION
+  ALL
+  SELECT
+    5 AS a,
+    50 AS b
+),
+
+f AS (
+  SELECT
+    a,
+    b
+  FROM
+    table_0 AS table_1
+)
+
+SELECT
+  a,
+  CASE
+    WHEN a <= 3 THEN b / 10
+    ELSE b
+  END AS b
+FROM
+  f
+```
+
+### dplyr R
+
+```{r}
+f <- dplyr::tibble(a = 1:5, b = a * 10)
+
+f |>
+  mutate(
+    b = case_when(
+      a <= 3 ~ b %/% 10,
+      .default = b
+    )
+  )
+```
+
+### Python Polars
+
+```{python}
+f = pl.DataFrame({"a": list(range(1, 6)), "b": list(range(10, 60, 10))})
+
+f.with_columns(
+    pl.when(pl.col("a") <= 3)
+    .then(pl.col("b") // 10)
+    .otherwise(pl.col("b"))
+)
+```
+
+:::
+
+{{< include _cleanup-knitr.qmd >}}

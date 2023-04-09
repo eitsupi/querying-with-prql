@@ -1,0 +1,412 @@
+---
+title: Define Functions
+description: |
+  To eliminate the need to copy and paste the same code,
+  it is convenient to make the process a function.
+engine: knitr
+knitr:
+  opts_chunk:
+    connection: con
+    engine-opts:
+      target: sql.duckdb
+      use_glue: true
+execute:
+  cache: true
+sidebar_position: 3
+---
+
+:::{.callout-note}
+
+This page is based on the chapter ["Method Chaining"](https://kevinheavey.github.io/modern-polars/method_chaining.html)
+of the Modern Polars book.
+
+:::
+
+To eliminate the need to copy and paste the same code, it is convenient to make the process a function.
+
+PRQL can chain functions by `|` (pipe operator),
+DuckDB SQL can chain functions by `.` (DuckDB >= 0.8, [duckdb/duckdb#6725](https://github.com/duckdb/duckdb/pull/6725)),
+and R can chain functions by `|>` (pipe operator, R >= 4.1).
+They are defined so that the previous value in the chain becomes the first (DuckDB SQL and R) or
+the last (PRQL) parameter of the function.
+
+In Python, we can chain methods using `.`.
+
+{{< include _setup-knitr.qmd >}}
+
+{{< include _setup-data-1.qmd >}}
+
+## Functions
+
+Define some functions and see if they work.
+
+:::{.callout-important}
+
+PRQL currently does not allow functions to be stored in a separate session or file,
+and they must always be defined with the main query.
+([PRQL/prql#1803](https://github.com/PRQL/prql/issues/1803))
+
+:::
+
+### Extract city names
+
+PRQL does not currently have the ability to apply a function to multiple columns at once.
+([PRQL/prql#2386](https://github.com/PRQL/prql/issues/2386))
+
+The others can apply a function to multiple columns at once,
+but DuckDB SQL differs in that the column names are updated and that behavior cannot be prevented.
+
+:::{.panel-tabset}
+
+#### PRQL DuckDB
+
+```{r}
+#| echo: false
+.prql_func_extract_city_name <- r"-(func extract_city_name col -> s"regexp_replace({col}, ',.*', '')")-"
+```
+
+```{prql}
+{{.prql_func_extract_city_name}}
+
+from tab
+select [
+  OriginCityName = extract_city_name OriginCityName,
+  DestCityName = extract_city_name DestCityName
+]
+take 5
+```
+
+#### SQL DuckDB
+
+```{sql}
+#| cache: false
+CREATE MACRO extract_city_name(col) AS regexp_replace(col, ',.*', '')
+```
+
+The function works as follows:
+
+```{glue_sql}
+SELECT
+  extract_city_name(COLUMNS(['OriginCityName', 'DestCityName']))
+FROM
+  tab
+LIMIT 5
+```
+
+#### dplyr R
+
+```{r}
+#| cache: false
+extract_city_name <- function(col) stringr::str_remove(col, ",.*")
+```
+
+The function works as follows:
+
+```{r}
+df |>
+  head(5) |>
+  mutate(
+    across(c(OriginCityName, DestCityName), extract_city_name),
+    .keep = "none"
+  )
+```
+
+#### Python Polars
+
+```{python}
+#| cache: false
+def extract_city_name(cols: list[str]) -> pl.Expr:
+    return pl.col(cols).str.replace(",.*", "")
+```
+
+The function works as follows:
+
+```{python}
+(
+    lf
+    .fetch(5)
+    .select(extract_city_name(["OriginCityName", "DestCityName"]))
+)
+```
+
+:::
+
+### Timestamp Calculation
+
+PRQL and SQL can only define functions that return a single column.
+
+The column name (here `FlightDate`) cannot be used in the function definition of DuckDB SQL.
+
+:::{.panel-tabset}
+
+#### PRQL DuckDB
+
+```{r}
+#| echo: false
+.prql_func_time_to_datetime <- r"(func time_to_datetime string -> (FlightDate | as timestamp) + s"""
+  TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
+  TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
+""")"
+```
+
+```{prql}
+{{.prql_func_time_to_datetime}}
+
+from tab
+select [
+  FlightDate,
+  DepTimeOld = DepTime
+]
+derive [
+  DepTime = (time_to_datetime DepTimeOld)
+]
+take 5
+```
+
+#### SQL DuckDB
+
+```{sql}
+#| cache: false
+CREATE MACRO time_to_datetime(date, string) AS
+  date::TIMESTAMP +
+  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
+  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
+```
+
+The function works as follows:
+
+```{glue_sql}
+SELECT
+  FlightDate,
+  time_to_datetime(FlightDate, DepTime) AS DepTime,
+  DepTime AS DepTimeOld
+FROM
+  tab
+LIMIT 5
+```
+
+#### dplyr R
+
+A function returns a single column.
+
+```{r}
+#| cache: false
+time_col <- function(col) {
+  col |>
+    case_match(
+      "2400" ~ "0000",
+      .default = col
+    ) |>
+    (\(x) {
+      (stringr::str_sub(x, 1, 2) |> lubridate::hours()) +
+      (stringr::str_sub(x, 3, 4) |> lubridate::minutes())
+    })()
+}
+```
+
+A function returns a DataFrame.
+
+```{r}
+#| cache: false
+time_to_datetime <- function(df, columns) {
+  df |>
+    mutate(across(all_of({{columns}}), \(x) FlightDate + time_col(x)))
+}
+```
+
+The function works as follows:
+
+```{r}
+df |>
+  head(5) |>
+  select(FlightDate, DepTime) |>
+  mutate(DepTimeOld = DepTime) |>
+  time_to_datetime("DepTime")
+```
+
+#### Python Polars
+
+A function returns a single `polars.Expr`.
+
+```{python}
+#| cache: false
+def time_col(col: str) -> pl.Expr:
+    col_expr = pl.col(col)
+    return (
+        pl.when(col_expr == "2400")
+        .then("0000")
+        .otherwise(col_expr)
+        .str.strptime(pl.Time, "%H%M", strict=True)
+        .alias(col)
+    )
+```
+
+A function returns a list of `polars.Expr`.
+
+```{python}
+#| cache: false
+def time_to_datetime(columns: list[str]) -> list[pl.Expr]:
+    date_col = pl.col("FlightDate")
+    return [
+        date_col
+        .dt.combine(time_col(col))
+        .alias(col)
+        for col in columns
+    ]
+```
+
+The function works as follows:
+
+```{python}
+(
+    lf
+    .fetch(5)
+    .select(["FlightDate", "DepTime"])
+    .with_columns(
+        DepTimeOld=pl.col("DepTime"),
+        *time_to_datetime(["DepTime"])
+    )
+)
+```
+
+:::
+
+## Use Functions in the Query
+
+dplyr and Polars allow column names to be predefined as vectors or lists,
+which can then be referenced in the query.
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+{{.prql_func_extract_city_name}}
+
+{{.prql_func_time_to_datetime}}
+
+from tab
+select [
+  Dest,
+  Tail_Number,
+  IATA_CODE_Reporting_Airline,
+  CancellationCode,
+  DepTime = time_to_datetime DepTime,
+  ArrTime = time_to_datetime ArrTime,
+  CRSArrTime = time_to_datetime CRSArrTime,
+  CRSDepTime = time_to_datetime CRSDepTime,
+  FlightDate,
+  Flight_Number_Reporting_Airline,
+  OriginCityName = extract_city_name OriginCityName,
+  DestCityName = extract_city_name DestCityName,
+  Origin,
+  DepDelay
+]
+take 5
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+SELECT
+  Dest,
+  Tail_Number,
+  IATA_CODE_Reporting_Airline,
+  CancellationCode,
+  time_to_datetime(
+    FlightDate,
+    COLUMNS([
+      DepTime,
+      ArrTime,
+      CRSArrTime,
+      CRSDepTime
+    ])
+  ),
+  FlightDate,
+  Flight_Number_Reporting_Airline,
+  extract_city_name(COLUMNS([OriginCityName, DestCityName])),
+  Origin,
+  DepDelay
+FROM
+  tab
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+category_cols <- c(
+  "Dest",
+  "Tail_Number",
+  "IATA_CODE_Reporting_Airline",
+  "CancellationCode"
+)
+
+time_cols <- c("DepTime", "ArrTime", "CRSArrTime", "CRSDepTime")
+
+cols <- c(
+  category_cols,
+  time_cols,
+  c(
+    "FlightDate",
+    "Flight_Number_Reporting_Airline",
+    "OriginCityName",
+    "DestCityName",
+    "Origin",
+    "DepDelay"
+  )
+)
+
+df |>
+  select(all_of(cols)) |>
+  mutate(
+    across({{category_cols}}, as.factor),
+    across(c(OriginCityName, DestCityName), extract_city_name)
+  ) |>
+  time_to_datetime(time_cols) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+category_cols = [
+    "Dest",
+    "Tail_Number",
+    "IATA_CODE_Reporting_Airline",
+    "CancellationCode",
+]
+
+time_cols = ["DepTime", "ArrTime", "CRSArrTime", "CRSDepTime"]
+
+cols = (
+    category_cols
+    + time_cols
+    + [
+        "FlightDate",
+        "Flight_Number_Reporting_Airline",
+        "OriginCityName",
+        "DestCityName",
+        "Origin",
+        "DepDelay",
+    ]
+)
+
+(
+    lf
+    .select(cols)
+    .with_columns(
+        [
+            pl.col(category_cols).cast(pl.Categorical),
+            extract_city_name(["OriginCityName", "DestCityName"]),
+            *time_to_datetime(time_cols)
+        ]
+    )
+    .head(5)
+    .collect()
+)
+```
+
+:::
+
+{{< include _cleanup-knitr.qmd >}}

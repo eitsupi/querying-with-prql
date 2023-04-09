@@ -1,0 +1,7 @@
+project:
+  type: docusaurus
+  execute-dir: project
+
+format:
+  docusaurus-md:
+    df-print: kable

@@ -1,0 +1,35 @@
+---
+title: Introduction
+engine: knitr
+sidebar_position: 1
+slug: /
+---
+
+# Introduction
+
+This document is an attempt to do some typical table data manipulation
+using [PRQL](https://prql-lang.org/) and [DuckDB](https://duckdb.org/).
+
+The content of each data manipulation is based on
+the awesome [Modern Polars](https://kevinheavey.github.io/modern-polars/) book
+by [Kevin Heavey](https://github.com/kevinheavey).
+And furthermore its origin is [Modern Pandas](https://tomaugspurger.github.io/posts/modern-1-intro/)
+by [Tom Augsburger](https://github.com/TomAugspurger).
+
+Each query is side-by-side with that of the original Polars one
+and the equivalent operations in PRQL, DuckDB SQL, and [dplyr](https://dplyr.tidyverse.org/) (R).
+
+Since this document focuses on the differences between the grammars of the different languages
+and does not go into detail about the processing details,
+I suggest that you also check out the original excellent artcles and book.
+
+:::{.callout-important}
+
+An unreleased version of DuckDB is used at this time and queries may contain features
+that are not available in the released version.
+The versions we are currently using are as follows:
+
+- PRQL: `r prqlr::prql_version()`
+- DuckDB: `r duckdb::sql("select version()")[1, 1]`
+
+:::
