@@ -10,7 +10,7 @@ knitr:
       use_glue: true
 execute:
   cache: true
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 :::{.callout-note}
@@ -369,11 +369,11 @@ tidy = (
 tidy.head(5)
 ```
 
+:::
+
 SQL and dplyr remove unnecessary columns after UNPIVOT
 (columns that were automatically removed in the original Polars and Pandas example),
 but PRQL result have more columns than the other results because PRQL could not remove columns ([PRQL/prql#2398](https://github.com/PRQL/prql/issues/2398)).
-
-:::
 
 ### Pivot
 
