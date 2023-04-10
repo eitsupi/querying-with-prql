@@ -12,7 +12,7 @@ create the Parquet file (with DuckDB CLI).
 # Create "data" directory, download the zip file into the directory, and create a Parquet file.
 data_dir <- "data"
 dest <- file.path(data_dir, "flights.csv.zip")
-parquet_path <- file.path(data_dir, "data.parquet")
+parquet_path <- file.path(data_dir, "flights.parquet")
 
 if (!fs::file_exists(parquet_path)) {
   if (!fs::file_exists(dest)) {
@@ -49,7 +49,7 @@ con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
 ```{glue_sql}
 #| cache: false
 #| warning: false
-CREATE TABLE tab AS SELECT * FROM 'data/data.parquet'
+CREATE TABLE tab AS SELECT * FROM 'data/flights.parquet'
 ```
 
 ```{glue_sql}
@@ -63,7 +63,7 @@ FROM tab LIMIT 5
 #| output: false
 library(dplyr, warn.conflicts = FALSE)
 
-df <- duckdb::sql("FROM 'data/data.parquet'")
+df <- duckdb::sql("FROM 'data/flights.parquet'")
 ```
 
 ```{r}
@@ -78,7 +78,7 @@ df |>
 #| output: false
 import polars as pl
 
-lf = pl.scan_parquet("data/data.parquet")
+lf = pl.scan_parquet("data/flights.parquet")
 ```
 
 ```{python}
