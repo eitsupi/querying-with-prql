@@ -102,6 +102,15 @@ const config = {
         additionalLanguages: ['r', 'elm',],
       },
     }),
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        docsRouteBasePath: "/",
+      },
+    ],
+  ],
 };
 
 module.exports = config;
