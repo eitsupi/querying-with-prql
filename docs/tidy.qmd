@@ -23,7 +23,7 @@ of the Modern Polars book.
 
 {{< include _setup-knitr.qmd >}}
 
-## Read the data
+## Read the Data
 
 Download the website tables as CSV files.
 I use R to download the date here, but we can also download and use the CSV files included in

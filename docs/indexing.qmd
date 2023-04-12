@@ -24,7 +24,7 @@ of the Modern Polars book.
 
 {{< include _setup-data-1.qmd >}}
 
-## Read the data with PRQL
+## Read the Data with PRQL
 
 Since PRQL cannot be used to create tables, data must be read from pre-created tables in a DB.
 
@@ -47,7 +47,7 @@ from '{{parquet_path}}'
 take 5
 ```
 
-## Selecting columns and slicing rows
+## Selecting Columns and Slicing Rows
 
 For column selection, the syntax is much the same, but the syntax for row selection using position looks different.
 
@@ -104,7 +104,7 @@ lf.select("Dest", "Tail_Number").head(16).tail(4).collect()
 
 :::
 
-## Filtering rows
+## Filtering Rows
 
 Since PRQL does not have something like the `IN` operator of SQL now
 ([PRQL/prql#993](https://github.com/PRQL/prql/issues/993)),

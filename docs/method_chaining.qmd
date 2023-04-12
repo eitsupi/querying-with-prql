@@ -48,7 +48,7 @@ and they must always be defined with the main query.
 
 :::
 
-### Extract city names
+### Extract City Names
 
 PRQL does not currently have the ability to apply a function to multiple columns at once.
 ([PRQL/prql#2386](https://github.com/PRQL/prql/issues/2386))
