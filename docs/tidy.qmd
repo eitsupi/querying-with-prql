@@ -8,6 +8,7 @@ knitr:
     engine-opts:
       target: sql.duckdb
       use_glue: true
+      info_string: '{.sql filename="SQL"}'
 execute:
   cache: true
 sidebar_position: 4
