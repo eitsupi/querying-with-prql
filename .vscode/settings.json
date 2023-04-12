@@ -1,0 +1,7 @@
+{
+	"jupyter.notebookFileRoot": "${workspaceFolder}",
+	"python.formatting.provider": "black",
+	"[r]": {
+		"editor.tabSize": 2
+	}
+}
