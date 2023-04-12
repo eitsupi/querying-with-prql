@@ -204,8 +204,7 @@ games |>
 ```{python}
 #| cache: false
 games = (
-    lf
-    .filter(~pl.all(pl.all().is_null()))
+    lf.filter(~pl.all(pl.all().is_null()))
     .with_columns(
         pl.col("date").str.strptime(pl.Date, "%a, %b %d, %Y"),
     )
@@ -349,18 +348,13 @@ tidy |>
 ```{python}
 #| cache: false
 tidy = (
-    games
-    .melt(
+    games.melt(
         id_vars=["game_id", "date"],
         value_vars=["away_team", "home_team"],
         value_name="team",
     )
     .sort("game_id")
-    .with_columns((
-        pl.col("date")
-        .alias("rest")
-        .diff().over("team")
-        .dt.days() - 1).cast(pl.Int8))
+    .with_columns(rest=(pl.col("date").diff().over("team").dt.days() - 1).cast(pl.Int8))
     .drop_nulls("rest")
 )
 ```
@@ -478,23 +472,13 @@ joined |>
 #### Python Polars
 
 ```{python}
-by_game = (
-    tidy
-    .pivot(
-        values="rest",
-        index=["game_id", "date"],
-        columns="variable"
-    )
-    .rename({"away_team": "away_rest", "home_team": "home_rest"})
-)
+by_game = tidy.pivot(
+    values="rest", index=["game_id", "date"], columns="variable"
+).rename({"away_team": "away_rest", "home_team": "home_rest"})
 
-joined = (
-    by_game
-    .join(games, on=["game_id", "date"])
-    .with_columns([
-        pl.col("home_points").alias("home_win") > pl.col("away_points"),
-        pl.col("home_rest").alias("rest_spread") - pl.col("away_rest"),
-    ])
+joined = by_game.join(games, on=["game_id", "date"]).with_columns(
+    home_win=pl.col("home_points") > pl.col("away_points"),
+    rest_spread=pl.col("home_rest") - pl.col("away_rest"),
 )
 ```
 

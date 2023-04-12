@@ -99,13 +99,7 @@ df |>
 ### Python Polars
 
 ```{python}
-(
-    lf
-    .select("Dest", "Tail_Number")
-    .head(16)
-    .tail(4)
-    .collect()
-)
+lf.select("Dest", "Tail_Number").head(16).tail(4).collect()
 ```
 
 :::
@@ -152,11 +146,7 @@ df |>
 ### Python Polars
 
 ```{python}
-(
-  lf.filter(pl.col("IATA_CODE_Reporting_Airline").is_in(["AA", "DL"]))
-  .head(5)
-  .collect()
-)
+lf.filter(pl.col("IATA_CODE_Reporting_Airline").is_in(["AA", "DL"])).head(5).collect()
 ```
 
 :::
@@ -256,9 +246,7 @@ f |>
 f = pl.DataFrame({"a": list(range(1, 6)), "b": list(range(10, 60, 10))})
 
 f.with_columns(
-    pl.when(pl.col("a") <= 3)
-    .then(pl.col("b") // 10)
-    .otherwise(pl.col("b"))
+    b=pl.when(pl.col("a") <= 3).then(pl.col("b") // 10).otherwise(pl.col("b"))
 )
 ```
 

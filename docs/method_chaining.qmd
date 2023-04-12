@@ -122,11 +122,7 @@ def extract_city_name(cols: list[str]) -> pl.Expr:
 The function works as follows:
 
 ```{python}
-(
-    lf
-    .fetch(5)
-    .select(extract_city_name(["OriginCityName", "DestCityName"]))
-)
+lf.fetch(5).select(extract_city_name(["OriginCityName", "DestCityName"]))
 ```
 
 :::
@@ -199,7 +195,7 @@ time_col <- function(col) {
     ) |>
     (\(x) {
       (stringr::str_sub(x, 1, 2) |> lubridate::hours()) +
-      (stringr::str_sub(x, 3, 4) |> lubridate::minutes())
+        (stringr::str_sub(x, 3, 4) |> lubridate::minutes())
     })()
 }
 ```
@@ -210,7 +206,7 @@ A function returns a DataFrame.
 #| cache: false
 time_to_datetime <- function(df, columns) {
   df |>
-    mutate(across(all_of({{columns}}), \(x) FlightDate + time_col(x)))
+    mutate(across(all_of({{ columns }}), \(x) FlightDate + time_col(x)))
 }
 ```
 
@@ -247,25 +243,14 @@ A function returns a list of `polars.Expr`.
 #| cache: false
 def time_to_datetime(columns: list[str]) -> list[pl.Expr]:
     date_col = pl.col("FlightDate")
-    return [
-        date_col
-        .dt.combine(time_col(col))
-        .alias(col)
-        for col in columns
-    ]
+    return [date_col.dt.combine(time_col(col)).alias(col) for col in columns]
 ```
 
 The function works as follows:
 
 ```{python}
-(
-    lf
-    .fetch(5)
-    .select(["FlightDate", "DepTime"])
-    .with_columns(
-        DepTimeOld=pl.col("DepTime"),
-        *time_to_datetime(["DepTime"])
-    )
+lf.fetch(5).select(["FlightDate", "DepTime"]).with_columns(
+    DepTimeOld=pl.col("DepTime"), *time_to_datetime(["DepTime"])
 )
 ```
 
@@ -360,7 +345,7 @@ cols <- c(
 df |>
   select(all_of(cols)) |>
   mutate(
-    across({{category_cols}}, as.factor),
+    across({{ category_cols }}, as.factor),
     across(c(OriginCityName, DestCityName), extract_city_name)
   ) |>
   time_to_datetime(time_cols) |>
@@ -392,19 +377,13 @@ cols = (
     ]
 )
 
-(
-    lf
-    .select(cols)
-    .with_columns(
-        [
-            pl.col(category_cols).cast(pl.Categorical),
-            extract_city_name(["OriginCityName", "DestCityName"]),
-            *time_to_datetime(time_cols)
-        ]
-    )
-    .head(5)
-    .collect()
-)
+lf.select(cols).with_columns(
+    [
+        pl.col(category_cols).cast(pl.Categorical),
+        extract_city_name(["OriginCityName", "DestCityName"]),
+        *time_to_datetime(time_cols),
+    ]
+).head(5).collect()
 ```
 
 :::
