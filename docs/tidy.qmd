@@ -21,18 +21,38 @@ of the Modern Polars book.
 
 :::
 
-{{< include _setup-knitr.qmd >}}
-
 ## Read the Data
 
-Download the website tables as CSV files.
-I use R to download the date here, but we can also download and use the CSV files included in
+{{< include _setup-knitr.qmd >}}
+
+### Download
+
+Download the data to be analysis (tables on the website) and write the data to CSV files.
+
+This document uses R to download the data from the source here,
+but we can also download and use the CSV files included in
 [the `kevinheavey/modern-polars` GitHub repository](https://github.com/kevinheavey/modern-polars/tree/master/data/nba).
+
+:::{.panel-tabset}
+
+#### R
 
 ```{r}
 #| code-fold: true
 #| cache: false
 nba_dir <- file.path("data", "nba")
+
+months <- c(
+  "october",
+  "november",
+  "december",
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june"
+)
 
 column_names <- c(
   date = "date",
@@ -57,29 +77,42 @@ column_names <- c(
 
 if (!fs::dir_exists(nba_dir)) {
   fs::dir_create(nba_dir)
-  months <- c(
-    "october",
-    "november",
-    "december",
-    "january",
-    "february",
-    "march",
-    "april",
-    "may",
-    "june"
-  )
-
   months |>
     purrr::walk(.write_data)
 }
 ```
+
+#### Shell
+
+This is a sample command to download the CSV files from the `kevinheavey/modern-polars` GitHub repository.
+
+```{r}
+#| results: asis
+#| echo: false
+base_command <- glue::glue("curl -sL https://github.com/kevinheavey/modern-polars/raw/87539190dde3e99d5e4c4f9957c78932a33075a0/data/nba/{{month}}.csv -o {nba_dir}/{{month}}.csv")
+
+commands <- glue::glue(base_command, month = months) |>
+  stringr::str_c(collapse = "\n")
+
+cat(
+  "```{.bash filename=Terminal}",
+  glue::glue("mkdir {nba_dir}"),
+  commands,
+  "```",
+  sep = "\n"
+)
+```
+
+:::
+
+### Load the Data
 
 After the CSV files are ready, load these into DuckDB (in-memory) database table,
 R DataFrame, and Python polars.LazyFrame.
 
 :::{.panel-tabset}
 
-### DuckDB
+#### DuckDB
 
 ```{r }
 #| cache: false
@@ -99,7 +132,7 @@ FROM tab
 LIMIT 5
 ```
 
-### R DataFrame
+#### R DataFrame
 
 ```{r}
 #| cache: false
@@ -111,11 +144,10 @@ df <- readr::read_csv(
 ```
 
 ```{r}
-df |>
-  head(5)
+df |> head(5)
 ```
 
-### Python polars.LazyFrame
+#### Python polars.LazyFrame
 
 ```{python}
 #| cache: false

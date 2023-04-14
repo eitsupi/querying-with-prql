@@ -20,8 +20,6 @@ of the Modern Polars book.
 
 :::
 
-{{< include _setup-knitr.qmd >}}
-
 {{< include _setup-data-1.qmd >}}
 
 ## Read the Data with PRQL
@@ -114,9 +112,9 @@ the `filter` statement in PRQL is a bit redundant.
 
 ### PRQL DuckDB
 
-:::{.callout-important}
+:::{.callout-caution}
 
-`or` is likely to be changed to `||` in the future.
+`or` operator will be changed to `||` PRQL >= 0.8.
 ([PRQL/prql#2170](https://github.com/PRQL/prql/issues/2170))
 
 :::
@@ -180,6 +178,13 @@ select [ # Note: can't use `derive` here https://github.com/PRQL/prql/issues/239
 ```
 
 ### SQL DuckDB
+
+:::{.callout-caution}
+
+DuckDB's division operator may be changed near future.
+([duckdb/duckdb#7082](https://github.com/duckdb/duckdb/pull/7082))
+
+:::
 
 ```{glue_sql}
 WITH table_0 AS (

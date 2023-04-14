@@ -32,8 +32,6 @@ the last (PRQL) parameter of the function.
 
 In Python, we can chain methods using `.`.
 
-{{< include _setup-knitr.qmd >}}
-
 {{< include _setup-data-1.qmd >}}
 
 ## Functions
