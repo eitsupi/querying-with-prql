@@ -174,7 +174,8 @@ but DuckDB SQL does (>= 0.8, [duckdb/duckdb#6621](https://github.com/duckdb/duck
 
 ### PRQL DuckDB
 
-```{prql, prql_cleaning}
+```{prql}
+#| label: prql_cleaning
 let games = (
   from tab
   filter s"COLUMNS(*) IS NOT NULL"
@@ -418,7 +419,8 @@ and `games` is defiened in @sec-cleaning with SQL.
 
 :::
 
-```{prql prql_tidy_nba_2}
+```{prql}
+#| label: prql_tidy_nba_2
 from s"""
 SELECT *
 FROM (
