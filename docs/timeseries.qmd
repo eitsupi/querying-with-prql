@@ -161,8 +161,6 @@ lf.fetch(5)
 
 ## Filtering
 
-DuckDB's `date_part` function
-
 :::{.panel-tabset}
 
 ### PRQL DuckDB
@@ -407,13 +405,18 @@ df |>
 
 ## Upsampling
 
+The way to use a function like `generate_series` to generate sequential values and then join them is general-purpose.
+
+In R, we can also use dedicated functions like
+[`timetk::pad_by_time`](https://business-science.github.io/timetk/reference/pad_by_time.html).
+
 :::{.panel-tabset}
 
 ### PRQL DuckDB
 
 ```{prql}
 let _tab1 = s"""
-  SELECT generate_series(
+  SELECT generate_series( -- Can't format this line https://github.com/PRQL/prql/issues/2430
     (SELECT min(time)),
     (SELECT max(time)),
     INTERVAL '6 hours'
@@ -447,8 +450,6 @@ LIMIT 5
 ```
 
 ### dplyr R
-
-`timetk::pad_by_time()`
 
 ```{r}
 .grid <- df$time |>
