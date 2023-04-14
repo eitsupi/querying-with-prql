@@ -1,0 +1,786 @@
+---
+title: Timeseries
+description: Handling timeseries data.
+engine: knitr
+knitr:
+  opts_chunk:
+    connection: con
+    engine-opts:
+      target: sql.duckdb
+      use_glue: true
+execute:
+  cache: true
+sidebar_position: 5
+---
+
+:::{.callout-note}
+
+This page is based on the chapter ["Timeseries"](https://kevinheavey.github.io/modern-polars/timeseries.html)
+of the Modern Polars book.
+
+:::
+
+## Preparing Data
+
+{{< include _setup-knitr.qmd >}}
+
+### Download
+
+Download the data from [Binance REST API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)
+and write it to a Parquet file.
+
+This document uses R to download the data from the source here,
+but we can also download and use the Parquet file included in the
+[kevinheavey/modern-polars](https://github.com/kevinheavey/modern-polars/blob/master/data/ohlcv.pq) GitHub repository.
+
+:::{.panel-tabset}
+
+#### R
+
+```{r}
+#| cache: false
+#| code-fold: true
+#| warning: false
+data_path <- "data/ohlcv.parquet"
+
+if (!fs::file_exists(data_path)) {
+  fs::dir_create(fs::path_dir(data_path))
+
+  .epoch_ms <- function(dt) {
+    dt |>
+      lubridate::as_datetime() |>
+      (\(x) (as.integer(x) * 1000))()
+  }
+
+  .start <- lubridate::make_datetime(2021, 1, 1) |> .epoch_ms()
+  .end <- lubridate::make_datetime(2022, 1, 1) |> .epoch_ms()
+
+  .url <- glue::glue(
+    "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&",
+    "interval=1d&startTime={.start}&endTime={.end}"
+  )
+
+  .res <- jsonlite::read_json(.url)
+
+  time_col <- "time"
+  ohlcv_cols <- c(
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  )
+  cols_to_use <- c(time_col, ohlcv_cols)
+  cols <- c(cols_to_use, glue::glue("ignore_{i}", i = 1:6))
+
+  df <- .res |>
+    tibble::enframe(name = NULL) |>
+    tidyr::unnest_wider(value, names_sep = "_") |>
+    rlang::set_names({{ cols }}) |>
+    dplyr::mutate(
+      dplyr::across({{ time_col }}, \(x) lubridate::as_datetime(x / 1000) |> lubridate::as_date()),
+      dplyr::across({{ ohlcv_cols }}, as.numeric),
+      .keep = "none"
+    )
+
+  # Unlike the Python client, the duckdb R client does not (yet) have automatic DataFrame registration.
+  # (duckdb/duckdb#6771)
+  con_tmp <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
+  duckdb::duckdb_register(con_tmp, "df", df)
+  duckdb::sql(glue::glue("COPY df TO '{data_path}' (FORMAT PARQUET)"), con_tmp)
+  DBI::dbDisconnect(con_tmp)
+}
+```
+
+#### Shell
+
+This is a sample command to download the Parquet file from the `kevinheavey/modern-polars` GitHub repository.
+
+```{.bash filename=Terminal}
+mkdir data
+curl -sL https://github.com/kevinheavey/modern-polars/raw/d67d6f95ce0de8aad5492c4497ac4c3e33d696e8/data/ohlcv.pq -o data/ohlcv.parquet
+```
+
+:::
+
+### Load the Data
+
+After the Parquet file is ready, load that into DuckDB (in-memory) database table, R DataFrame, and Python polars.LazyFrame.
+
+:::{.panel-tabset}
+
+#### DuckDB
+
+```{r }
+#| cache: false
+#| output: false
+#| echo: false
+con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
+```
+
+```{glue_sql}
+#| cache: false
+#| output: false
+CREATE TABLE tab AS FROM 'data/ohlcv.parquet'
+```
+
+```{glue_sql}
+FROM tab
+LIMIT 5
+```
+
+#### R DataFrame
+
+```{r}
+#| cache: false
+#| output: false
+library(dplyr, warn.conflicts = FALSE)
+
+df <- duckdb::sql("FROM 'data/ohlcv.parquet'")
+```
+
+```{r}
+df |> head(5)
+```
+
+#### Python polars.LazyFrame
+
+```{python}
+#| cache: false
+#| output: false
+import polars as pl
+
+lf = pl.scan_parquet("data/ohlcv.parquet")
+```
+
+```{python}
+lf.fetch(5)
+```
+
+:::
+
+## Filtering
+
+DuckDB's `date_part` function
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+#| engine-opts:
+#|   use_glue: false
+from tab
+filter s"date_part(['year', 'month'], time) = {{year: 2021, month: 2}}"
+take 5
+```
+
+### SQL DuckDB
+
+:::{.content-hidden}
+
+Because of the bug of kintr's sql engine <https://github.com/yihui/knitr/issues/1842>,
+I want to use the following block as `glue_sql`.
+But in `glue_sql` code blocks, we should escape `{` and `}` as `{{` and `}}`,
+so I mark this block as `sql` and `cache: false`.
+
+:::
+
+```{sql}
+--| cache.lazy: false
+FROM tab
+WHERE date_part(['year', 'month'], time) = {year: 2021, month: 2}
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+df |>
+  filter(
+    lubridate::floor_date(time, "month") == lubridate::make_datetime(2021, 2)
+  ) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+(
+    lf.filter((pl.col("time").dt.year() == 2021) & (pl.col("time").dt.month() == 2))
+    .head(5)
+    .collect()
+)
+```
+
+:::
+
+## Downsampling
+
+It is important to note carefully how units such as `5 days` or `1 week` actually work.
+In other words, where to start counting `5 days` or `1 week` could be completely different in each system.
+
+Here, we should note that `time_bucket` in DuckDB, `lubridate::floor_date` in R,
+and `groupby_dynamic` in Polars have completely different initial starting points by default.
+
+- The DuckDB function `time_bucket`'s origin defaults to `2000-01-03 00:00:00+00` for days or weeks interval.[^time_bucket]
+- In the R `lubridate::floor_date` function, timestamp is floored using the number of days elapsed
+  since the beginning of every month when specifying `"5 days"` to the `unit` argument.
+
+  ```{r}
+  lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
+    lubridate::floor_date("5 days")
+  ```
+
+  And when `"1 week"` to the `unit` argument, it is floored to the nearest week,
+  Sunday through Saturday.
+
+  ```{r}
+  lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
+    lubridate::floor_date("1 week")
+  ```
+
+  To start from an arbitrary origin, all breaks must be specified as a vector in the unit argument.[^floor_date]
+
+  ```{r}
+  lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
+    lubridate::floor_date(lubridate::make_date(2023, 1, 31))
+  ```
+
+- `groupby_dynamic` of Polars, the `offset` parameter to specify the origin point, is negative `every` by default.[^groupby_dynamic]
+
+[^time_bucket]: <https://duckdb.org/docs/sql/functions/timestamptz#icu-timestamp-with-time-zone-operators>
+[^floor_date]: <https://github.com/tidyverse/lubridate/issues/932>
+[^groupby_dynamic]: <https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.groupby_dynamic.html>
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+from tab
+derive [
+  time_new = s"""
+    time_bucket(INTERVAL '5 days', time, (FROM tab SELECT min(time)))
+  """
+]
+group [time_new] (
+  aggregate [
+    open = average open,
+    high = average high,
+    low = average low,
+    close = average close,
+    volume = average volume
+  ]
+)
+sort time_new
+take 5
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+WITH _tab1 AS (
+  FROM tab
+  SELECT
+    * REPLACE (time_bucket(INTERVAL '5 days', time, (FROM tab SELECT min(time)))) AS time
+)
+
+FROM _tab1
+SELECT
+  time,
+  avg(COLUMNS(x -> x NOT IN ('_tab1."time"')))
+GROUP BY time
+ORDER BY time
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+df |>
+  mutate(
+    time = time |>
+      (\(x) lubridate::floor_date(x, seq(min(x), max(x), by = 5)))()
+  ) |>
+  summarise(across(everything(), mean), .by = time) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+(
+    lf.groupby_dynamic("time", every="5d")
+    .agg(pl.col(pl.Float64).mean())
+    .head(5)
+    .collect()
+)
+```
+
+:::
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+from tab
+derive [
+  time_new = s"""
+    time_bucket(INTERVAL '7 days', time, (FROM tab SELECT min(time)))
+  """
+]
+group [time_new] (
+  aggregate [
+    open_mean = average open,
+    high_mean = average high,
+    low_mean = average low,
+    close_mean = average close,
+    volume_mean = average volume,
+    open_sum = sum open,
+    high_sum = sum high,
+    low_sum = sum low,
+    close_sum = sum close,
+    volume_sum = sum volume
+  ]
+)
+sort time_new
+take 5
+```
+
+### SQL DukcDB
+
+```{glue_sql}
+WITH _tab1 AS (
+  FROM tab
+  SELECT
+    * REPLACE (time_bucket(INTERVAL '7 days', time, (FROM tab SELECT min(time)))) AS time
+)
+
+FROM _tab1
+SELECT
+  time,
+  avg(COLUMNS(x -> x NOT IN ('_tab1."time"'))),
+  sum(COLUMNS(x -> x NOT IN ('_tab1."time"')))
+GROUP BY time
+ORDER BY time
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+df |>
+  mutate(
+    time = time |>
+      (\(x) lubridate::floor_date(x, seq(min(x), max(x), by = 7)))()
+  ) |>
+  summarise(
+    across(
+      everything(),
+      list(mean = mean, sum = sum),
+      .names = "{.col}_{.fn}"
+    ),
+    .by = time
+  ) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+(
+    lf.groupby_dynamic("time", every="1w")
+    .agg(
+        [
+            pl.col(pl.Float64).mean().suffix("_mean"),
+            pl.col(pl.Float64).sum().suffix("_sum"),
+        ]
+    )
+    .head(5)
+    .collect()
+)
+```
+
+:::
+
+## Upsampling
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+let _tab1 = s"""
+  SELECT generate_series(
+    (SELECT min(time)),
+    (SELECT max(time)),
+    INTERVAL '6 hours'
+  ).unnest() AS time
+  FROM tab
+"""
+
+from _tab1
+join side:left tab [_tab1.time==tab.time]
+select ![tab.time]
+sort _tab1.time
+take 5
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+WITH _tab1 AS (
+  SELECT
+    generate_series(
+      (FROM tab SELECT min(time)),
+      (FROM tab SELECT max(time)),
+      INTERVAL '6 hours'
+    ).unnest() AS time
+)
+
+FROM _tab1
+LEFT JOIN tab USING (time)
+ORDER BY time
+LIMIT 5
+```
+
+### dplyr R
+
+`timetk::pad_by_time()`
+
+```{r}
+.grid <- df$time |>
+  lubridate::as_datetime() |>
+  (\(x) seq(min(x), max(x), by = "6 hours"))() |>
+  tibble::tibble(time = _)
+
+.grid |>
+  left_join(df, by = "time") |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+lf.collect().upsample("time", every="6h").head(5)
+```
+
+:::
+
+## Window Functions
+
+It is necessary to be careful how the Window function calculates
+if the width of the window is less than the specified value.
+
+### Moving Average, Cumurative Avarage {#sec-moving-ave}
+
+PRQL has a dedicated way of applying the window to the entire table.
+For the others, use a individual function for each column.
+
+In R, base R have some window functions like `cumsum`, but none like cumurative avarage.
+dplyr complements this with several functions, including `cummean`.
+
+Polars does not yet have a dedicated function to compute cumulative averages,
+so we must use cumulative sums to compute them.
+
+:::{.callout-note}
+
+[The original Modern Pandas post](https://tomaugspurger.github.io/posts/modern-7-timeseries/#rolling--expanding--ew)
+and [the Modern Polars book](https://kevinheavey.github.io/modern-polars/timeseries.html#rolling-expanding-ew)
+have a exponentially weighted (EW) calculation example in addition.
+But DuckDB does not have a dedicated function to do this, so it is omitted here.
+
+:::
+
+:::{.panel-tabset}
+
+#### PRQL DuckDB
+
+```{prql}
+from tab
+sort _frame.time
+window rolling:28 (
+  derive [`28D MA` = average close]
+)
+window rows:..0 (
+  derive [`Expanding Average` = average close]
+)
+select [
+  _frame.time,
+  Raw = close,
+  `28D MA`,
+  `Expanding Average`
+]
+take 26..30
+```
+
+#### SQL DuckDB
+
+```{glue_sql}
+FROM tab
+SELECT
+  time,
+  close AS "Raw",
+  avg(close) OVER (
+    ORDER BY time
+    ROWS BETWEEN 27 PRECEDING AND CURRENT ROW
+  ) AS "28D MA",
+  avg(close) OVER (
+    ORDER BY time
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  ) AS "Expanding Average"
+LIMIT 5 OFFSET 25
+```
+
+#### dplyr R
+
+```{r}
+#| cache: false
+roll_and_expand <- df |>
+  arrange(time) |>
+  mutate(
+    time,
+    Raw = close,
+    `28D MA` = close |>
+      slider::slide_vec(mean, .before = 27, .complete = TRUE),
+    `Expanding Average` = cummean(close),
+    .keep = "none"
+  )
+```
+
+```{r}
+roll_and_expand |>
+  slice(26:30)
+```
+
+#### Python Polars
+
+```{python}
+#| cache: false
+close = pl.col("close")
+
+roll_and_expand = lf.sort("time").select(
+    [
+        pl.col("time"),
+        close.alias("Raw"),
+        close.rolling_mean(28).alias("28D MA"),
+        close.alias("Expanding Average").cumsum() / (close.cumcount() + 1),
+    ]
+)
+```
+
+```{python}
+roll_and_expand.head(30).tail(5).collect()
+```
+
+:::
+
+Here, DuckDB also calculates avarage for cases where the window width is less than 28 for the `28D MA` column,
+whereas R `slider::slide_vec(.complete = TRUE)` and Polars `rolling_mean` make them missing values.
+If we are using DuckDB and need to make replacement for `NULL`,
+we need to add further processing.
+
+Plotting the results of dplyr shows the following.
+
+```{r}
+#| label: plot-window-functions
+#| code-fold: true
+#| warning: false
+library(ggplot2)
+
+roll_and_expand |>
+  tidyr::pivot_longer(cols = !time) |>
+  ggplot(aes(time, value, colour = name)) +
+  geom_line() +
+  theme_linedraw() +
+  labs(y = "Close ($)") +
+  scale_x_date(
+    date_breaks = "month",
+    labels = scales::label_date_short()
+  )
+```
+
+### Combining Rolling Aggregations
+
+:::{.panel-tabset}
+
+#### PRQL DuckDB
+
+```{prql}
+from tab
+sort _frame.time
+window rows:-15..14 (
+  select [
+    _frame.time,
+    mean = average close,
+    std = stddev close
+  ]
+)
+take 13..17
+```
+
+#### SQL DuckDB
+
+```{glue_sql}
+FROM tab
+SELECT
+  time,
+  avg(close) OVER (
+    ORDER BY time
+    ROWS BETWEEN 15 PRECEDING AND 14 FOLLOWING
+  ) AS mean,
+  stddev(close) OVER (
+    ORDER BY time
+    ROWS BETWEEN 15 PRECEDING AND 14 FOLLOWING
+  ) AS std
+ORDER BY time
+LIMIT 5 OFFSET 12
+```
+
+#### dplyr R
+
+```{r}
+#| cache: false
+.slide_func <- function(.x, .fn) {
+  slider::slide_vec(.x, .fn, .before = 15, .after = 14, .complete = TRUE)
+}
+
+mean_std <- df |>
+  arrange(time) |>
+  mutate(
+    time,
+    across(
+      close,
+      .fns = list(mean = \(x) .slide_func(x, mean), std = \(x) .slide_func(x, sd)),
+      .names = "{.fn}"
+    ),
+    .keep = "none"
+  )
+```
+
+```{r}
+mean_std |>
+  slice(13:17)
+```
+
+#### Python Polars
+
+```{python}
+#| cache: false
+mean_std = lf.sort("time").select(
+    time=pl.col("time"),
+    mean=pl.col("close").rolling_mean(30, center=True),
+    std=pl.col("close").rolling_std(30, center=True),
+)
+```
+
+```{python}
+mean_std.head(17).tail(5).collect()
+```
+
+:::
+
+As in @sec-moving-ave, here too the DuckDB results differ from the others.
+
+Plotting the results of dplyr shows the following.
+
+```{r}
+#| label: plot-rolling-combined
+#| code-fold: true
+#| warning: false
+library(ggplot2)
+
+mean_std |>
+  ggplot(aes(time)) +
+  geom_ribbon(
+    aes(ymin = mean - std, ymax = mean + std),
+    alpha = 0.3, fill = "blue"
+  ) +
+  geom_line(aes(y = mean), color = "blue") +
+  theme_linedraw() +
+  labs(y = "Close ($)") +
+  scale_x_date(
+    date_breaks = "month",
+    labels = scales::label_date_short()
+  )
+```
+
+## Timezones
+
+:::{.callout-important}
+
+In DuckDB, the icu DuckDB extension is needed for time zones support.
+If the DuckDB client that we are using does not contain the extension, we need to install and load it.
+
+```{sql}
+--| cache: false
+--| warning: false
+INSTALL 'icu'
+```
+
+```{sql}
+--| cache: false
+--| warning: false
+LOAD 'icu'
+```
+
+:::
+
+:::{.panel-tabset}
+
+### PRQL DuckDB
+
+```{prql}
+func timezone tz col -> s"timezone({tz}, {col})"
+
+from tab
+derive [
+  time_new = (_frame.time | timezone "UTC" | timezone "US/Eastern")
+]
+select ![_frame.time]
+take 5
+```
+
+### SQL DuckDB
+
+```{glue_sql}
+FROM tab
+SELECT
+  * REPLACE timezone('US/Eastern', timezone('UTC', time)) AS time
+LIMIT 5
+```
+
+### dplyr R
+
+```{r}
+df |>
+  mutate(
+    time = time |>
+      lubridate::force_tz("UTC") |>
+      lubridate::with_tz("US/Eastern")
+  ) |>
+  head(5)
+```
+
+### Python Polars
+
+```{python}
+(
+    lf.with_columns(
+        pl.col("time")
+        .cast(pl.Datetime)
+        .dt.replace_time_zone("UTC")
+        .dt.convert_time_zone("US/Eastern")
+    )
+    .head(5)
+    .collect()
+)
+```
+
+:::
+
+Note that each system may keep time zone information in a different way.
+Here, the `time` column (and the `time_new` column) in DuckDB results
+are the TIMESTAMP type, has no time zone information.
