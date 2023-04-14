@@ -31,7 +31,7 @@ Download the data to be analysis (tables on the website) and write the data to C
 
 This document uses R to download the data from the source here,
 but we can also download and use the CSV files included in
-[the `kevinheavey/modern-polars` GitHub repository](https://github.com/kevinheavey/modern-polars/tree/master/data/nba).
+the [kevinheavey/modern-polars](https://github.com/kevinheavey/modern-polars/tree/master/data/nba) GitHub repository.
 
 :::{.panel-tabset}
 
