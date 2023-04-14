@@ -10,13 +10,31 @@ slug: /
 This document is an attempt to do some typical table data manipulation
 using [PRQL](https://prql-lang.org/) and [DuckDB](https://duckdb.org/).
 
+PRQL is a in development modern language for data manipulation, and can be compiled to SQL.
+DuckDB is a modern in-memory SQL OLAP ([very fast](https://duckdblabs.github.io/db-benchmark/))
+database management system.
+
+## Motivation
+
+CLI, JavaScript, Python, R, etc., we can combine PRQL compiler and DuckDB in various places
+to manipulate data with PRQL.
+
+At the same time, new features are being added to DuckDB's SQL on a constant basis,
+and the syntax is becoming more friendly.
+
+So, I thought that by comparing PRQL and the latest DuckDB SQL (and other query libraries),
+we could clarify the missing features of the PRQL and highlight the latest features of DuckDB.
+
+## Content and Credit
+
 The content of each data manipulation is based on
 the awesome [Modern Polars](https://kevinheavey.github.io/modern-polars/) book
 by [Kevin Heavey](https://github.com/kevinheavey).
 And furthermore its origin is [Modern Pandas](https://tomaugspurger.github.io/posts/modern-1-intro/)
 by [Tom Augsburger](https://github.com/TomAugspurger).
 
-Each query is side-by-side with that of the original Polars one
+Each query is side-by-side with that of the original
+[Python Polars](https://pola-rs.github.io/polars/py-polars/html/reference/) one
 and the equivalent operations in PRQL, DuckDB SQL, and [dplyr](https://dplyr.tidyverse.org/) (R).
 
 Since this document focuses on the differences between the grammars of the different languages
