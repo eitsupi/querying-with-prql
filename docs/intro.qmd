@@ -1,6 +1,6 @@
 ---
 title: Introduction
-engine: knitr
+jupyter: python3
 sidebar_position: 1
 slug: /
 ---
@@ -41,13 +41,92 @@ Since this document focuses on the differences between the grammars of the diffe
 and does not go into detail about the processing details,
 I suggest that you also check out the original excellent artcles and book.
 
-:::{.callout-important}
+:::{.content-hidden}
 
-An unreleased version of DuckDB is used at this time and queries may contain features
-that are not available in the released version.
-The versions we are currently using are as follows:
-
-- PRQL: `r prqlr::prql_version()`
-- DuckDB: `r duckdb::sql("select version()")[1, 1]`
+Since Quarto cannot mix knitr and jupyter engines in a single qmd file (also if using include shortcode),
+the knitr document wll output to a separate md file and imported here using the Docusaurus mdx functionality.
 
 :::
+
+
+```{=mdx}
+import VesionInfo from './_info.md';
+
+<VesionInfo/>
+```
+
+## Running the Code on IPython
+
+As mentioned above, PRQL and DuckDB can run on a variety of languages.
+This section describes, as an example, the use of IPython for easy interactive execution of PRQL, SQL, and Polars.
+
+### Setup
+
+This command installs the necessary Python packages.
+
+```{.bash filename="Terminal"}
+python -m pip install pyprql polars[pyarrow]
+```
+
+Then, we can start `ipython`.
+
+Run `load_ext` magic to activate PRQL magic (from [pyprql](https://pyprql.readthedocs.io/))
+and SQL magic (from [jupysql](https://jupysql.ploomber.io/)).
+
+```{python}
+#| output: false
+%load_ext pyprql.magic
+%load_ext sql
+```
+
+```{python}
+#| include: false
+%config SqlMagic.displaycon = False
+%config SqlMagic.feedback = False
+```
+
+Use SQL magic connects to DuckDB in-memory database.
+Note that PRQL magic shares the connection with SQL magic.
+
+```{python}
+%sql duckdb://
+```
+
+### Combine DuckDB and Polars
+
+By setting `autopolars` config, the results of PRQL and SQL executions can be converted to polars.DataFrame.
+
+```{python}
+#| output: false
+%config PrqlMagic.autopolars = True
+%config SqlMagic.autopolars = True
+```
+
+Also, since DuckDB can execute queries against polars.DataFrame and polars.LazyFrame etc.,
+these can be referenced directly from PRQL or SQL, as shown below.
+
+```{python}
+import polars as pl
+
+lf = pl.LazyFrame({"a": list(range(1, 6))})
+```
+
+```{python}
+%%prql
+from lf
+derive b = a * 5
+take 3
+```
+
+```{python}
+%%sql
+SELECT
+  a,
+  a * 5 AS b
+FROM lf
+LIMIT 3
+```
+
+```{python}
+lf.with_columns(b=pl.col("a") * 5).head(3).collect()
+```

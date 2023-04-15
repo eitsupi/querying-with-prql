@@ -18,7 +18,7 @@
 	},
 	"postCreateCommand": {
 		"r-packages": "install2.r -n -1 prqlr dplyr duckdb reticulate readr fs curl lubridate janitor rvest slider ggplot2",
-		"python-packages": "python3 -m pip install polars",
+		"python-packages": "python3 -m pip install polars pyprql jupyter",
 		"npm-packages": "npm install"
 	}
 }
