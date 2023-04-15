@@ -31,17 +31,15 @@ so that PRQL queries can be executed without creating tables.
 
 :::{.callout-important}
 
-PRQL 0.7 does not support `` from `data/foo.csv` ``,
-so we need to write raw SQL in [S-strings](https://prql-lang.org/book/language-features/s-strings.html) now.
-([PRQL/prql#1535](https://github.com/PRQL/prql/issues/1535))
+PRQL 0.8 does not support `` from `data/foo.csv` ``,
+so we need to write raw SQL in [S-strings](https://prql-lang.org/book/language-features/s-strings.html)
+([PRQL/prql#1535](https://github.com/PRQL/prql/issues/1535)) or
+use the `read_parquet` function ([PRQL/prql#2409](https://github.com/PRQL/prql/issues/2409)).
 
 :::
 
 ```{prql}
-from s"""
-select *
-from '{{parquet_path}}'
-"""
+from (read_parquet "{{parquet_path}}")
 take 5
 ```
 
@@ -114,14 +112,14 @@ the `filter` statement in PRQL is a bit redundant.
 
 :::{.callout-caution}
 
-`or` operator will be changed to `||` PRQL >= 0.8.
+`or` operator was changed to `||` PRQL >= 0.8.
 ([PRQL/prql#2170](https://github.com/PRQL/prql/issues/2170))
 
 :::
 
 ```{prql}
 from tab
-filter IATA_CODE_Reporting_Airline == 'AA' or IATA_CODE_Reporting_Airline == 'DL'
+filter IATA_CODE_Reporting_Airline == 'AA' || IATA_CODE_Reporting_Airline == 'DL'
 take 5
 ```
 
