@@ -130,3 +130,7 @@ LIMIT 3
 ```{python}
 lf.with_columns(b=pl.col("a") * 5).head(3).collect()
 ```
+
+## License
+
+This website's content is licensed under the MIT license.

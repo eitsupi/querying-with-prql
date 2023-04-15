@@ -1,41 +1,23 @@
-# Website
+# Quering with PRQL
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This is a book-style website built by Quarto and Docusaurus.
 
-### Installation
+To build, we need quarto cli, node.js, R, Python, and a lot of packages!
+Please check the [devcontainer.json](.devcontainer/devcontainer.json) file.
+(In addition, please install the development version of the R duckdb and prqlr packages from R-universe!)
 
-```
-$ yarn
-```
+Build by
 
-### Local Development
-
-```
-$ yarn start
+```sh
+quarto render --cache-refresh
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+And deploy by
 
-### Build
-
-```
-$ yarn build
+```sh
+npm run deploy
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## License
 
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Licensed under the MIT License.
