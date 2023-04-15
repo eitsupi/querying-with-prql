@@ -219,7 +219,7 @@ LIMIT 5
 
 ```{r}
 games <- df |>
-  filter(!if_any(everything(), is.na)) |>
+  filter(!if_any(everything(), is.na)) |> # Also can use `tidyr::drop_na`
   mutate(
     date = lubridate::parse_date_time(date, "%a, %b %d, %Y") |>
       lubridate::as_date()
@@ -238,7 +238,7 @@ games |>
 ```{python}
 #| cache: false
 games = (
-    lf.filter(~pl.all(pl.all().is_null()))
+    lf.filter(~pl.any(pl.all().is_null())) # Also can use `polars.LazyFrame.drop_nulls`
     .with_columns(
         pl.col("date").str.strptime(pl.Date, "%a, %b %d, %Y"),
     )
