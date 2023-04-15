@@ -111,12 +111,18 @@ import polars as pl
 lf = pl.LazyFrame({"a": list(range(1, 6))})
 ```
 
+:::{.panel-tabset}
+
+#### PRQL DuckDB
+
 ```{python}
 %%prql
 from lf
 derive b = a * 5
 take 3
 ```
+
+#### SQL DuckDB
 
 ```{python}
 %%sql
@@ -127,9 +133,13 @@ FROM lf
 LIMIT 3
 ```
 
+#### Python Polars
+
 ```{python}
 lf.with_columns(b=pl.col("a") * 5).head(3).collect()
 ```
+
+:::
 
 ## License
 
