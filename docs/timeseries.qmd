@@ -475,12 +475,12 @@ lf.collect().upsample("time", every="6h").head(5)
 It is necessary to be careful how the Window function calculates
 if the width of the window is less than the specified value.
 
-### Moving Average, Cumurative Avarage {#sec-moving-ave}
+### Moving Average, Cumulative Avarage {#sec-moving-ave}
 
 PRQL has a dedicated way of applying the window to the entire table.
 For the others, use a individual function for each column.
 
-In R, base R have some window functions like `cumsum`, but none like cumurative avarage.
+In R, base R have some window functions like `cumsum`, but none like cumulative avarage.
 dplyr complements this with several functions, including `cummean`.
 
 Polars does not yet have a dedicated function to compute cumulative averages,
