@@ -92,6 +92,21 @@ Note that PRQL magic shares the connection with SQL magic.
 %sql duckdb://
 ```
 
+To fix the SQL dialect used inside PRQL magic, we need to set the target with config magic.
+By setting `"sql.duckdb"` here, we can specify to the PRQL compiler that it should generate optimized SQL for DuckDB.
+
+```{python}
+%config PrqlMagic.target = "sql.duckdb"
+```
+
+All available targets can be found in the `prql_python.get_targets` function.
+
+```{python}
+import prql_python as prql
+
+print(prql.get_targets())
+```
+
 ### Combine DuckDB and Polars
 
 By setting `autopolars` config, the results of PRQL and SQL executions can be converted to polars.DataFrame.
