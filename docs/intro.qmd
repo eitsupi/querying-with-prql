@@ -5,25 +5,24 @@ sidebar_position: 1
 slug: /
 ---
 
-# Introduction
-
-This document is an attempt to do some typical table data manipulation
-using [PRQL](https://prql-lang.org/) and [DuckDB](https://duckdb.org/).
-
-PRQL is a in development modern language for data manipulation, and can be compiled to SQL.
-DuckDB is a modern in-memory SQL OLAP ([very fast](https://duckdblabs.github.io/db-benchmark/))
-database management system.
-
 ## Motivation
 
-CLI, JavaScript, Python, R, etc., we can combine PRQL compiler and DuckDB in various places
-to manipulate data with PRQL.
+I wanted to compare PRQL and the latest DuckDB SQL
+(and other query libraries) to clarify the missing features of PRQL
+and to highlight the latest features of DuckDB.
 
-At the same time, new features are being added to DuckDB's SQL on a constant basis,
-and the syntax is becoming more friendly.
+* [PRQL](https://prql-lang.org/) is a modern language for data manipulation
+that compiles to SQL.
+Although the PRQL language is still evolving,
+it is easy to create complex SQL queries. 
+* [DuckDB](https://duckdb.org/) is a modern in-memory
+([very fast](https://duckdblabs.github.io/db-benchmark/)) SQL OLAP
+database management system.
+DuckDB is also evolving, with new features and improving syntax.
 
-So, I thought that by comparing PRQL and the latest DuckDB SQL (and other query libraries),
-we could clarify the missing features of the PRQL and highlight the latest features of DuckDB.
+This project uses CLI, JavaScript, Python, R, etc.
+to combine the PRQL compiler and DuckDB database.
+This gives a powerful database that can be queried with a simple syntax.
 
 ## Content and Credit
 
