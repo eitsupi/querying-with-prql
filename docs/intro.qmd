@@ -17,9 +17,8 @@ and to highlight the latest features of DuckDB.
   SQL OLAP database management system.
   DuckDB is also evolving, with new features and improving syntax.
 
-This project uses CLI, JavaScript, Python, R, etc.
-to combine the PRQL compiler and DuckDB database.
-This gives a powerful database that can be queried with a simple syntax.
+This project combines PRQL and DuckDB
+to give a powerful database that can be queried with a simple syntax.
 
 ## Content and Credit
 
