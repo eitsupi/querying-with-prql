@@ -8,3 +8,4 @@ project:
 format:
   docusaurus-md:
     df-print: kable
+    code-line-numbers: true
