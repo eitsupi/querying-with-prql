@@ -153,6 +153,16 @@ lf.filter(pl.col("IATA_CODE_Reporting_Airline").is_in(["AA", "DL"])).head(5).col
 
 ### PRQL DuckDB
 
+:::{.callout-caution}
+
+DuckDB's integer division operator is changed from `/` to `//` in version 0.8.0.
+([duckdb/duckdb#7082](https://github.com/duckdb/duckdb/pull/7082))
+
+But PRQL have only one division operator `/` now.
+([PRQL/prql#2426](https://github.com/PRQL/prql/issues/2426))
+
+:::
+
 ```{prql}
 let f = from_text format:json """{
   "columns": ["a", "b"],
@@ -176,13 +186,6 @@ select [ # Note: can't use `derive` here https://github.com/PRQL/prql/issues/239
 ```
 
 ### SQL DuckDB
-
-:::{.callout-caution}
-
-DuckDB's division operator may be changed near future.
-([duckdb/duckdb#7082](https://github.com/duckdb/duckdb/pull/7082))
-
-:::
 
 ```{glue_sql}
 WITH table_0 AS (
@@ -222,7 +225,7 @@ f AS (
 SELECT
   a,
   CASE
-    WHEN a <= 3 THEN b / 10
+    WHEN a <= 3 THEN b // 10
     ELSE b
   END AS b
 FROM
