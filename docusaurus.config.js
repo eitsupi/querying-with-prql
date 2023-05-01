@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Quering with PRQL",
+  title: "Querying with PRQL",
   tagline: "Data transformation with PRQL and DuckDB",
-  favicon: 'img/favicon.ico',
+  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
   url: "https://eitsupi.github.io/",
@@ -58,8 +58,8 @@ const config = {
       navbar: {
         title: "Quering with PRQL",
         logo: {
-          alt: 'Logo',
-          src: 'img/logo.svg',
+          alt: "Logo",
+          src: "img/logo.svg",
         },
         items: [
           {

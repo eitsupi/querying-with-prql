@@ -5,8 +5,6 @@ sidebar_position: 1
 slug: /
 ---
 
-# Introduction
-
 This document is an attempt to do some typical table data manipulation
 using [PRQL](https://prql-lang.org/) and [DuckDB](https://duckdb.org/).
 
