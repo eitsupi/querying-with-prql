@@ -95,7 +95,7 @@ df |>
 ### Python Polars
 
 ```{python}
-lf.select("Dest", "Tail_Number").head(16).tail(4).collect()
+lf.select("Dest", "Tail_Number").slice(12, 4).collect()
 ```
 
 :::
