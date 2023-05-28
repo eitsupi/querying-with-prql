@@ -35,7 +35,7 @@ if (!fs::file_exists(parquet_path)) {
   }
 
   unzip(dest, csv_name, exdir = data_dir)
-  duckdb::sql(glue::glue("COPY (FROM read_csv_auto('{csv_path}')) TO '{parquet_path}' (FORMAT PARQUET)"))
+  duckdb:::sql(glue::glue("COPY (FROM read_csv_auto('{csv_path}')) TO '{parquet_path}' (FORMAT PARQUET)"))
 }
 ```
 
@@ -91,7 +91,7 @@ FROM tab LIMIT 5
 #| output: false
 library(dplyr, warn.conflicts = FALSE)
 
-df <- duckdb::sql("FROM 'data/flights.parquet'")
+df <- duckdb:::sql("FROM 'data/flights.parquet'")
 ```
 
 ```{r}

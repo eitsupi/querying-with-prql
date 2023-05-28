@@ -87,7 +87,7 @@ if (!fs::file_exists(data_path)) {
   # (duckdb/duckdb#6771)
   con_tmp <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
   duckdb::duckdb_register(con_tmp, "df", df)
-  duckdb::sql(glue::glue("COPY df TO '{data_path}' (FORMAT PARQUET)"), con_tmp)
+  duckdb:::sql(glue::glue("COPY df TO '{data_path}' (FORMAT PARQUET)"), con_tmp)
   DBI::dbDisconnect(con_tmp)
 }
 ```
@@ -136,7 +136,7 @@ LIMIT 5
 #| output: false
 library(dplyr, warn.conflicts = FALSE)
 
-df <- duckdb::sql("FROM 'data/ohlcv.parquet'")
+df <- duckdb:::sql("FROM 'data/ohlcv.parquet'")
 ```
 
 ```{r}
@@ -287,7 +287,7 @@ WITH _tab1 AS (
 FROM _tab1
 SELECT
   time,
-  avg(COLUMNS(x -> x NOT IN ('_tab1."time"')))
+  avg(COLUMNS(x -> x NOT IN ('time')))
 GROUP BY time
 ORDER BY time
 LIMIT 5
@@ -360,8 +360,8 @@ WITH _tab1 AS (
 FROM _tab1
 SELECT
   time,
-  avg(COLUMNS(x -> x NOT IN ('_tab1."time"'))),
-  sum(COLUMNS(x -> x NOT IN ('_tab1."time"')))
+  avg(COLUMNS(x -> x NOT IN ('time'))),
+  sum(COLUMNS(x -> x NOT IN ('time')))
 GROUP BY time
 ORDER BY time
 LIMIT 5

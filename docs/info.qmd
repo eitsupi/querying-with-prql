@@ -5,11 +5,9 @@ output-file: _info.md
 
 :::{.callout-important}
 
-An unreleased version of DuckDB is used at this time and queries may contain features
-that are not available in the released version.
 The versions we are currently using are as follows:
 
 - PRQL: `r prqlr::prql_version()`
-- DuckDB: `r duckdb::sql("select version()")[1, 1]`
+- DuckDB: `r duckdb:::sql("select version()")[1, 1]`
 
 :::
