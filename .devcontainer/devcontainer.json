@@ -7,7 +7,8 @@
 		"ghcr.io/eitsupi/devcontainer-features/go-task": {},
 		"ghcr.io/devcontainers/features/node": {},
 		"ghcr.io/devcontainers/features/python": {},
-		"ghcr.io/eitsupi/devcontainer-features/duckdb-cli": {}
+		"ghcr.io/eitsupi/devcontainer-features/duckdb-cli": {},
+		"ghcr.io/rocker-org/devcontainer-features/renv-cache": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -18,8 +19,11 @@
 		}
 	},
 	"postCreateCommand": {
-		"r-packages": "install2.r -n -1 prqlr dplyr duckdb reticulate readr fs curl lubridate janitor rvest slider ggplot2",
+		"r-packages": "R -q -e 'renv::restore()'",
 		"python-packages": "python3 -m pip install polars[pyarrow] pyprql jupyter jupyter-cache",
 		"npm-packages": "npm install"
+	},
+	"containerEnv": {
+		"RENV_CONFIG_PAK_ENABLED": "TRUE"
 	}
 }
