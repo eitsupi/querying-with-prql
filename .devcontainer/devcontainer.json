@@ -20,7 +20,7 @@
 	},
 	"postCreateCommand": {
 		"r-packages": "R -q -e 'renv::restore()'",
-		"python-packages": "python3 -m pip install polars[pyarrow] pyprql jupyter jupyter-cache",
+		"python-packages": "python3 -m pip install jupyter jupyter-cache -r requirements.txt",
 		"npm-packages": "npm install"
 	},
 	"containerEnv": {
