@@ -14,12 +14,6 @@
       "Version": "1.1.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "DBI",
-      "RemoteRef": "DBI",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.3",
       "Requirements": [
         "R",
         "methods"
@@ -31,12 +25,6 @@
       "Version": "7.3-60",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "MASS",
-      "RemoteRef": "MASS",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "7.3-60",
       "Requirements": [
         "R",
         "grDevices",
@@ -52,12 +40,6 @@
       "Version": "1.5-4.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "Matrix",
-      "RemoteRef": "Matrix",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.5-4.1",
       "Requirements": [
         "R",
         "graphics",
@@ -74,12 +56,6 @@
       "Version": "2.5.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "R6",
-      "RemoteRef": "R6",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.5.1",
       "Requirements": [
         "R"
       ],
@@ -90,12 +66,6 @@
       "Version": "1.1-3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "RColorBrewer",
-      "RemoteRef": "RColorBrewer",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1-3",
       "Requirements": [
         "R"
       ],
@@ -106,12 +76,6 @@
       "Version": "1.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "askpass",
-      "RemoteRef": "askpass",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1",
       "Requirements": [
         "sys"
       ],
@@ -122,12 +86,6 @@
       "Version": "0.1-3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "base64enc",
-      "RemoteRef": "base64enc",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.1-3",
       "Requirements": [
         "R"
       ],
@@ -138,12 +96,6 @@
       "Version": "4.0.5",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "bit",
-      "RemoteRef": "bit",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "4.0.5",
       "Requirements": [
         "R"
       ],
@@ -154,12 +106,6 @@
       "Version": "4.0.5",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "bit64",
-      "RemoteRef": "bit64",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "4.0.5",
       "Requirements": [
         "R",
         "bit",
@@ -174,12 +120,6 @@
       "Version": "0.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "bslib",
-      "RemoteRef": "bslib",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.2",
       "Requirements": [
         "R",
         "base64enc",
@@ -200,12 +140,6 @@
       "Version": "1.0.8",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "cachem",
-      "RemoteRef": "cachem",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.0.8",
       "Requirements": [
         "fastmap",
         "rlang"
@@ -217,12 +151,6 @@
       "Version": "3.6.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "cli",
-      "RemoteRef": "cli",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "3.6.1",
       "Requirements": [
         "R",
         "utils"
@@ -234,12 +162,6 @@
       "Version": "0.8.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "clipr",
-      "RemoteRef": "clipr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.8.0",
       "Requirements": [
         "utils"
       ],
@@ -250,12 +172,6 @@
       "Version": "2.1-0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "colorspace",
-      "RemoteRef": "colorspace",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.1-0",
       "Requirements": [
         "R",
         "grDevices",
@@ -270,12 +186,6 @@
       "Version": "0.4.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "cpp11",
-      "RemoteRef": "cpp11",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.3",
       "Hash": "ed588261931ee3be2c700d22e94a29ab"
     },
     "crayon": {
@@ -283,12 +193,6 @@
       "Version": "1.5.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "crayon",
-      "RemoteRef": "crayon",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.5.2",
       "Requirements": [
         "grDevices",
         "methods",
@@ -301,12 +205,6 @@
       "Version": "5.0.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "curl",
-      "RemoteRef": "curl",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "5.0.0",
       "Requirements": [
         "R"
       ],
@@ -317,12 +215,6 @@
       "Version": "0.6.31",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "digest",
-      "RemoteRef": "digest",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.6.31",
       "Requirements": [
         "R",
         "utils"
@@ -334,12 +226,6 @@
       "Version": "1.1.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "dplyr",
-      "RemoteRef": "dplyr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.2",
       "Requirements": [
         "R",
         "R6",
@@ -360,34 +246,22 @@
     },
     "duckdb": {
       "Package": "duckdb",
-      "Version": "0.8.0",
+      "Version": "0.8.1-1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "duckdb",
-      "RemoteRef": "duckdb",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.8.0",
       "Requirements": [
         "DBI",
         "R",
         "methods",
         "utils"
       ],
-      "Hash": "d22ebf42c6176a7863d44587e88a84d9"
+      "Hash": "a066bd8c5d84b5a6bf7dc5f24109d85c"
     },
     "ellipsis": {
       "Package": "ellipsis",
       "Version": "0.3.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "ellipsis",
-      "RemoteRef": "ellipsis",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.3.2",
       "Requirements": [
         "R",
         "rlang"
@@ -399,12 +273,6 @@
       "Version": "0.21",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "evaluate",
-      "RemoteRef": "evaluate",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.21",
       "Requirements": [
         "R",
         "methods"
@@ -416,12 +284,6 @@
       "Version": "1.0.4",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "fansi",
-      "RemoteRef": "fansi",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.0.4",
       "Requirements": [
         "R",
         "grDevices",
@@ -434,12 +296,6 @@
       "Version": "2.1.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "farver",
-      "RemoteRef": "farver",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.1.1",
       "Hash": "8106d78941f34855c440ddb946b8f7a5"
     },
     "fastmap": {
@@ -447,12 +303,6 @@
       "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "fastmap",
-      "RemoteRef": "fastmap",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.1",
       "Hash": "f7736a18de97dea803bde0a2daaafb27"
     },
     "fontawesome": {
@@ -460,12 +310,6 @@
       "Version": "0.5.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "fontawesome",
-      "RemoteRef": "fontawesome",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.5.1",
       "Requirements": [
         "R",
         "htmltools",
@@ -478,12 +322,6 @@
       "Version": "1.6.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "fs",
-      "RemoteRef": "fs",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.6.2",
       "Requirements": [
         "R",
         "methods"
@@ -495,12 +333,6 @@
       "Version": "0.1.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "generics",
-      "RemoteRef": "generics",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.1.3",
       "Requirements": [
         "R",
         "methods"
@@ -512,12 +344,6 @@
       "Version": "3.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "ggplot2",
-      "RemoteRef": "ggplot2",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "3.4.2",
       "Requirements": [
         "MASS",
         "R",
@@ -543,12 +369,6 @@
       "Version": "1.6.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "glue",
-      "RemoteRef": "glue",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.6.2",
       "Requirements": [
         "R",
         "methods"
@@ -560,12 +380,6 @@
       "Version": "0.3.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "gtable",
-      "RemoteRef": "gtable",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.3.3",
       "Requirements": [
         "R",
         "cli",
@@ -581,12 +395,6 @@
       "Version": "0.10",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "highr",
-      "RemoteRef": "highr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.10",
       "Requirements": [
         "R",
         "xfun"
@@ -598,12 +406,6 @@
       "Version": "1.1.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "hms",
-      "RemoteRef": "hms",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.3",
       "Requirements": [
         "lifecycle",
         "methods",
@@ -618,12 +420,6 @@
       "Version": "0.5.5",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "htmltools",
-      "RemoteRef": "htmltools",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.5.5",
       "Requirements": [
         "R",
         "base64enc",
@@ -641,12 +437,6 @@
       "Version": "1.4.6",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "httr",
-      "RemoteRef": "httr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.4.6",
       "Requirements": [
         "R",
         "R6",
@@ -662,12 +452,6 @@
       "Version": "0.2.7",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "isoband",
-      "RemoteRef": "isoband",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.2.7",
       "Requirements": [
         "grid",
         "utils"
@@ -679,12 +463,6 @@
       "Version": "2.2.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "janitor",
-      "RemoteRef": "janitor",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.2.0",
       "Requirements": [
         "R",
         "dplyr",
@@ -707,12 +485,6 @@
       "Version": "0.1.4",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "jquerylib",
-      "RemoteRef": "jquerylib",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.1.4",
       "Requirements": [
         "htmltools"
       ],
@@ -723,12 +495,6 @@
       "Version": "1.8.5",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "jsonlite",
-      "RemoteRef": "jsonlite",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.8.5",
       "Requirements": [
         "methods"
       ],
@@ -739,12 +505,6 @@
       "Version": "1.43",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "knitr",
-      "RemoteRef": "knitr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.43",
       "Requirements": [
         "R",
         "evaluate",
@@ -761,12 +521,6 @@
       "Version": "0.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "labeling",
-      "RemoteRef": "labeling",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.2",
       "Requirements": [
         "graphics",
         "stats"
@@ -793,12 +547,6 @@
       "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "lifecycle",
-      "RemoteRef": "lifecycle",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.0.3",
       "Requirements": [
         "R",
         "cli",
@@ -812,12 +560,6 @@
       "Version": "1.9.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "lubridate",
-      "RemoteRef": "lubridate",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.9.2",
       "Requirements": [
         "R",
         "generics",
@@ -831,12 +573,6 @@
       "Version": "2.0.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "magrittr",
-      "RemoteRef": "magrittr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.0.3",
       "Requirements": [
         "R"
       ],
@@ -847,12 +583,6 @@
       "Version": "2.0.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "memoise",
-      "RemoteRef": "memoise",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.0.1",
       "Requirements": [
         "cachem",
         "rlang"
@@ -881,12 +611,6 @@
       "Version": "0.12",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "mime",
-      "RemoteRef": "mime",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.12",
       "Requirements": [
         "tools"
       ],
@@ -897,12 +621,6 @@
       "Version": "0.5.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "munsell",
-      "RemoteRef": "munsell",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.5.0",
       "Requirements": [
         "colorspace",
         "methods"
@@ -928,12 +646,6 @@
       "Version": "2.0.6",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "openssl",
-      "RemoteRef": "openssl",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.0.6",
       "Requirements": [
         "askpass"
       ],
@@ -944,12 +656,6 @@
       "Version": "1.9.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "pillar",
-      "RemoteRef": "pillar",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.9.0",
       "Requirements": [
         "cli",
         "fansi",
@@ -967,12 +673,6 @@
       "Version": "2.0.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "pkgconfig",
-      "RemoteRef": "pkgconfig",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.0.3",
       "Requirements": [
         "utils"
       ],
@@ -983,12 +683,6 @@
       "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "prettyunits",
-      "RemoteRef": "prettyunits",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.1",
       "Hash": "95ef9167b75dde9d2ccc3c7528393e7e"
     },
     "progress": {
@@ -996,12 +690,6 @@
       "Version": "1.2.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "progress",
-      "RemoteRef": "progress",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.2.2",
       "Requirements": [
         "R6",
         "crayon",
@@ -1012,31 +700,19 @@
     },
     "prqlr": {
       "Package": "prqlr",
-      "Version": "0.4.0",
+      "Version": "0.4.0.9003",
       "Source": "Repository",
-      "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "prqlr",
-      "RemoteRef": "prqlr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.0",
+      "Repository": "https://eitsupi.r-universe.dev",
       "Requirements": [
         "R"
       ],
-      "Hash": "8547f89f05c30e61cc7b79c0076b26cc"
+      "Hash": "4984298ad04bca9b1da3bd71019dbb35"
     },
     "purrr": {
       "Package": "purrr",
       "Version": "1.0.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "purrr",
-      "RemoteRef": "purrr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.0.1",
       "Requirements": [
         "R",
         "cli",
@@ -1052,12 +728,6 @@
       "Version": "0.3.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "rappdirs",
-      "RemoteRef": "rappdirs",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.3.3",
       "Requirements": [
         "R"
       ],
@@ -1068,12 +738,6 @@
       "Version": "2.1.4",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "readr",
-      "RemoteRef": "readr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.1.4",
       "Requirements": [
         "R",
         "R6",
@@ -1094,31 +758,19 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.17.3",
+      "Version": "1.0.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "renv",
-      "RemoteRef": "renv",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "source",
-      "RemoteSha": "0.17.3",
       "Requirements": [
         "utils"
       ],
-      "Hash": "4543b8cd233ae25c6aba8548be9e747e"
+      "Hash": "c321cd99d56443dbffd1c9e673c0c1a2"
     },
     "rlang": {
       "Package": "rlang",
       "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "rlang",
-      "RemoteRef": "rlang",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.1.1",
       "Requirements": [
         "R",
         "utils"
@@ -1130,12 +782,6 @@
       "Version": "2.22",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "rmarkdown",
-      "RemoteRef": "rmarkdown",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.22",
       "Requirements": [
         "R",
         "bslib",
@@ -1160,12 +806,6 @@
       "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "rvest",
-      "RemoteRef": "rvest",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.0.3",
       "Requirements": [
         "R",
         "cli",
@@ -1186,12 +826,6 @@
       "Version": "0.4.6",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "sass",
-      "RemoteRef": "sass",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.6",
       "Requirements": [
         "R6",
         "fs",
@@ -1206,12 +840,6 @@
       "Version": "1.2.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "scales",
-      "RemoteRef": "scales",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.2.1",
       "Requirements": [
         "R",
         "R6",
@@ -1230,12 +858,6 @@
       "Version": "0.4-2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "selectr",
-      "RemoteRef": "selectr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4-2",
       "Requirements": [
         "R",
         "R6",
@@ -1249,12 +871,6 @@
       "Version": "0.3.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "slider",
-      "RemoteRef": "slider",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.3.0",
       "Requirements": [
         "R",
         "cli",
@@ -1269,12 +885,6 @@
       "Version": "0.11.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "snakecase",
-      "RemoteRef": "snakecase",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.11.0",
       "Requirements": [
         "R",
         "stringi",
@@ -1287,12 +897,6 @@
       "Version": "1.7.12",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "stringi",
-      "RemoteRef": "stringi",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.7.12",
       "Requirements": [
         "R",
         "stats",
@@ -1306,12 +910,6 @@
       "Version": "1.5.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "stringr",
-      "RemoteRef": "stringr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.5.0",
       "Requirements": [
         "R",
         "cli",
@@ -1329,12 +927,6 @@
       "Version": "3.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "sys",
-      "RemoteRef": "sys",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "3.4.2",
       "Hash": "3a1be13d68d47a8cd0bfd74739ca1555"
     },
     "tibble": {
@@ -1342,12 +934,6 @@
       "Version": "3.2.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "tibble",
-      "RemoteRef": "tibble",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "3.2.1",
       "Requirements": [
         "R",
         "fansi",
@@ -1367,12 +953,6 @@
       "Version": "1.3.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "tidyr",
-      "RemoteRef": "tidyr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.3.0",
       "Requirements": [
         "R",
         "cli",
@@ -1396,12 +976,6 @@
       "Version": "1.2.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "tidyselect",
-      "RemoteRef": "tidyselect",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.2.0",
       "Requirements": [
         "R",
         "cli",
@@ -1418,12 +992,6 @@
       "Version": "0.2.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "timechange",
-      "RemoteRef": "timechange",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.2.0",
       "Requirements": [
         "R",
         "cpp11"
@@ -1435,12 +1003,6 @@
       "Version": "0.45",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "tinytex",
-      "RemoteRef": "tinytex",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.45",
       "Requirements": [
         "xfun"
       ],
@@ -1451,12 +1013,6 @@
       "Version": "0.4.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "tzdb",
-      "RemoteRef": "tzdb",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.0",
       "Requirements": [
         "R",
         "cpp11"
@@ -1468,12 +1024,6 @@
       "Version": "1.2.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "utf8",
-      "RemoteRef": "utf8",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.2.3",
       "Requirements": [
         "R"
       ],
@@ -1481,15 +1031,9 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.6.2",
+      "Version": "0.6.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "vctrs",
-      "RemoteRef": "vctrs",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.6.2",
       "Requirements": [
         "R",
         "cli",
@@ -1497,19 +1041,13 @@
         "lifecycle",
         "rlang"
       ],
-      "Hash": "a745bda7aff4734c17294bb41d4e4607"
+      "Hash": "d0ef2856b83dc33ea6e255caf6229ee2"
     },
     "viridisLite": {
       "Package": "viridisLite",
       "Version": "0.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "viridisLite",
-      "RemoteRef": "viridisLite",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.4.2",
       "Requirements": [
         "R"
       ],
@@ -1520,12 +1058,6 @@
       "Version": "1.6.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "vroom",
-      "RemoteRef": "vroom",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.6.3",
       "Requirements": [
         "R",
         "bit64",
@@ -1552,12 +1084,6 @@
       "Version": "0.2.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "warp",
-      "RemoteRef": "warp",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.2.0",
       "Requirements": [
         "R"
       ],
@@ -1568,12 +1094,6 @@
       "Version": "2.5.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "withr",
-      "RemoteRef": "withr",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.5.0",
       "Requirements": [
         "R",
         "grDevices",
@@ -1587,12 +1107,6 @@
       "Version": "0.39",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "xfun",
-      "RemoteRef": "xfun",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "0.39",
       "Requirements": [
         "stats",
         "tools"
@@ -1604,12 +1118,6 @@
       "Version": "1.3.4",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "xml2",
-      "RemoteRef": "xml2",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "1.3.4",
       "Requirements": [
         "R",
         "methods"
@@ -1621,12 +1129,6 @@
       "Version": "2.3.7",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "yaml",
-      "RemoteRef": "yaml",
-      "RemoteRepos": "https://packagemanager.posit.co/cran/__linux__/jammy/latest",
-      "RemotePkgPlatform": "x86_64-pc-linux-gnu-ubuntu-22.04",
-      "RemoteSha": "2.3.7",
       "Hash": "0d0056cc5383fbc240ccd0cb584bf436"
     }
   }
