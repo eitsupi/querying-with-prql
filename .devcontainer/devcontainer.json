@@ -24,6 +24,7 @@
 		"npm-packages": "npm install"
 	},
 	"containerEnv": {
-		"RENV_CONFIG_PAK_ENABLED": "TRUE"
+		"RENV_CONFIG_PAK_ENABLED": "TRUE",
+		"RENV_CONFIG_SANDBOX_ENABLED": "FALSE"
 	}
 }

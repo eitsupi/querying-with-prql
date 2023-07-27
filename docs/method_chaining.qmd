@@ -60,17 +60,17 @@ but DuckDB SQL differs in that the column names are updated and that behavior ca
 
 ```{r}
 #| echo: false
-.prql_func_extract_city_name <- r"-(func extract_city_name col -> s"regexp_replace({col}, ',.*', '')")-"
+.prql_func_extract_city_name <- r"-(let extract_city_name = col -> s"regexp_replace({col}, ',.*', '')")-"
 ```
 
 ```{prql}
 {{.prql_func_extract_city_name}}
 
 from tab
-select [
+select {
   OriginCityName = extract_city_name OriginCityName,
   DestCityName = extract_city_name DestCityName
-]
+}
 take 5
 ```
 
@@ -137,7 +137,8 @@ The column name (here `FlightDate`) cannot be used in the function definition of
 
 ```{r}
 #| echo: false
-.prql_func_time_to_datetime <- r"(func time_to_datetime string -> (FlightDate | as timestamp) + s"""
+.prql_func_time_to_datetime <- r"(let time_to_datetime = string -> s"""
+  FlightDate::TIMESTAMP +
   TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
   TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
 """)"
@@ -147,13 +148,13 @@ The column name (here `FlightDate`) cannot be used in the function definition of
 {{.prql_func_time_to_datetime}}
 
 from tab
-select [
+select {
   FlightDate,
   DepTimeOld = DepTime
-]
-derive [
+}
+derive {
   DepTime = (time_to_datetime DepTimeOld)
-]
+}
 take 5
 ```
 
@@ -269,7 +270,7 @@ which can then be referenced in the query.
 {{.prql_func_time_to_datetime}}
 
 from tab
-select [
+select {
   Dest,
   Tail_Number,
   IATA_CODE_Reporting_Airline,
@@ -284,7 +285,7 @@ select [
   DestCityName = extract_city_name DestCityName,
   Origin,
   DepDelay
-]
+}
 take 5
 ```
 

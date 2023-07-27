@@ -257,19 +257,19 @@ and `groupby_dynamic` in Polars have completely different initial starting point
 
 ```{prql}
 from tab
-derive [
+derive {
   time_new = s"""
     time_bucket(INTERVAL '5 days', time, (FROM tab SELECT min(time)))
   """
-]
-group [time_new] (
-  aggregate [
+}
+group {time_new} (
+  aggregate {
     open = average open,
     high = average high,
     low = average low,
     close = average close,
     volume = average volume
-  ]
+  }
 )
 sort time_new
 take 5
@@ -325,13 +325,13 @@ df |>
 
 ```{prql}
 from tab
-derive [
+derive {
   time_new = s"""
     time_bucket(INTERVAL '7 days', time, (FROM tab SELECT min(time)))
   """
-]
-group [time_new] (
-  aggregate [
+}
+group {time_new} (
+  aggregate {
     open_mean = average open,
     high_mean = average high,
     low_mean = average low,
@@ -342,7 +342,7 @@ group [time_new] (
     low_sum = sum low,
     close_sum = sum close,
     volume_sum = sum volume
-  ]
+  }
 )
 sort time_new
 take 5
@@ -416,7 +416,14 @@ In R, we can also use dedicated functions like
 
 ### PRQL DuckDB
 
-```{prql}
+:::{.callout-important}
+
+This example does not work with prql-compiler 0.9.2.
+([PRQL/prql#3129](https://github.com/PRQL/prql/issues/3129))
+
+:::
+
+```{.prql}
 let _tab1 = s"""
   SELECT
     generate_series(
@@ -428,9 +435,9 @@ let _tab1 = s"""
 """
 
 from _tab1
-join side:left tab [_tab1.time==tab.time]
-select ![tab.time]
-sort _tab1.time
+join side:left tab (==time)
+sort tab.time
+select !{tab.time}
 take 5
 ```
 
@@ -504,19 +511,19 @@ But DuckDB does not have a dedicated function to do this, so it is omitted here.
 
 ```{prql}
 from tab
-sort _frame.time
+sort this.time
 window rolling:28 (
-  derive [`28D MA` = average close]
+  derive {`28D MA` = average close}
 )
 window rows:..0 (
-  derive [`Expanding Average` = average close]
+  derive {`Expanding Average` = average close}
 )
-select [
-  _frame.time,
+select {
+  this.time,
   Raw = close,
   `28D MA`,
   `Expanding Average`
-]
+}
 take 26..30
 ```
 
@@ -614,13 +621,13 @@ roll_and_expand |>
 
 ```{prql}
 from tab
-sort _frame.time
+sort this.time
 window rows:-15..14 (
-  select [
-    _frame.time,
+  select {
+    this.time,
     mean = average close,
     std = stddev close
-  ]
+  }
 )
 take 13..17
 ```
@@ -737,13 +744,13 @@ LOAD 'icu'
 ### PRQL DuckDB
 
 ```{prql}
-func timezone tz col -> s"timezone({tz}, {col})"
+let timezone = tz col -> s"timezone({tz}, {col})"
 
 from tab
-derive [
-  time_new = (_frame.time | timezone "UTC" | timezone "US/Eastern")
-]
-select ![_frame.time]
+derive {
+  time_new = (this.time | timezone "UTC" | timezone "US/Eastern")
+}
+select !{this.time}
 take 5
 ```
 

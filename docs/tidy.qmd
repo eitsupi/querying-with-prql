@@ -180,9 +180,9 @@ let games = (
   from tab
   filter s"COLUMNS(*) IS NOT NULL"
   derive date_new = (s"strptime(date, '%a, %b %d, %Y')" | as date)
-  select ![_frame.date] # https://github.com/PRQL/prql/issues/2155
+  select !{this.date} # `this` points to refer to current relation
   sort date_new
-  derive game_id = row_number
+  derive game_id = (row_number this)
 )
 
 from games
@@ -306,11 +306,11 @@ FROM (
     VALUE team
 )
 """
-group [team] (
-  sort _frame.date
-  derive rest = _frame.date - (_frame.date | lag 1) - 1
+group {team} (
+  sort this.date
+  derive rest = this.date - (this.date | lag 1) - 1
 )
-select ![away_points, home_points]
+select !{away_points, home_points}
 filter rest != null
 sort game_id
 take 5
@@ -427,19 +427,19 @@ FROM (
   PIVOT_WIDER tidy ON variable USING FIRST(rest) GROUP BY (game_id, date)
 )
 """
-derive [
+derive {
   away_rest = away_team,
   home_rest = home_team
-]
-select ![
+}
+select !{
   away_team,
   home_team
-]
-join side:left games [==game_id, ==date]
-derive [
+}
+join side:left games (==game_id && ==date)
+derive {
   home_win = games.home_points > games.away_points,
   rest_spread = home_rest - away_rest
-]
+}
 sort games.game_id
 take 5
 ```

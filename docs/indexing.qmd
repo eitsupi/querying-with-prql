@@ -29,17 +29,8 @@ Since PRQL cannot be used to create tables, data must be read from pre-created t
 But when PRQL is used on DuckDB, it is possible to treat Parquet and other files as tables,
 so that PRQL queries can be executed without creating tables.
 
-:::{.callout-important}
-
-PRQL 0.8 does not support `` from `data/foo.csv` ``,
-so we need to write raw SQL in [S-strings](https://prql-lang.org/book/language-features/s-strings.html)
-([PRQL/prql#1535](https://github.com/PRQL/prql/issues/1535)) or
-use the `read_parquet` function ([PRQL/prql#2409](https://github.com/PRQL/prql/issues/2409)).
-
-:::
-
 ```{prql}
-from (read_parquet "{{parquet_path}}")
+from `{{parquet_path}}`
 take 5
 ```
 
@@ -55,7 +46,7 @@ Note that PRQL, SQL, and R are 1-based, while Python is 0-based.
 
 ```{prql}
 from tab
-select [Dest, Tail_Number]
+select {Dest, Tail_Number}
 take 13..16
 ```
 
@@ -110,13 +101,6 @@ the `filter` statement in PRQL is a bit redundant.
 
 ### PRQL DuckDB
 
-:::{.callout-caution}
-
-`or` operator was changed to `||` PRQL >= 0.8.
-([PRQL/prql#2170](https://github.com/PRQL/prql/issues/2170))
-
-:::
-
 ```{prql}
 from tab
 filter IATA_CODE_Reporting_Airline == 'AA' || IATA_CODE_Reporting_Airline == 'DL'
@@ -153,36 +137,23 @@ lf.filter(pl.col("IATA_CODE_Reporting_Airline").is_in(["AA", "DL"])).head(5).col
 
 ### PRQL DuckDB
 
-:::{.callout-caution}
-
-DuckDB's integer division operator is changed from `/` to `//` in version 0.8.0.
-([duckdb/duckdb#7082](https://github.com/duckdb/duckdb/pull/7082))
-
-But PRQL have only one division operator `/` now.
-([PRQL/prql#2426](https://github.com/PRQL/prql/issues/2426))
-
-:::
-
 ```{prql}
-let f = from_text format:json """{
-  "columns": ["a", "b"],
-  "data": [
-    [1, 10],
-    [2, 20],
-    [3, 30],
-    [4, 40],
-    [5, 50]
-  ]
-}"""
+let f = from [
+  {a = 1, b = 10},
+  {a = 2, b = 20},
+  {a = 3, b = 30},
+  {a = 4, b = 40},
+  {a = 5, b = 50},
+]
 
 from f
-select [ # Note: can't use `derive` here https://github.com/PRQL/prql/issues/2392
-  a,
-  b = case [
-    a <= 3 => b / 10,
+select {
+  a, # Note: can't use `derive` here https://github.com/PRQL/prql/issues/3130
+  b = case {
+    a <= 3 => b // 10,
     true => b
-  ]
-]
+  }
+}
 ```
 
 ### SQL DuckDB
