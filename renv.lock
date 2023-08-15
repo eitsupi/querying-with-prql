@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.0",
+    "Version": "4.3.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -700,13 +700,13 @@
     },
     "prqlr": {
       "Package": "prqlr",
-      "Version": "0.4.0.9003",
+      "Version": "0.5.0",
       "Source": "Repository",
-      "Repository": "https://eitsupi.r-universe.dev",
+      "Repository": "RSPM",
       "Requirements": [
         "R"
       ],
-      "Hash": "4984298ad04bca9b1da3bd71019dbb35"
+      "Hash": "6711bb14770a7b8419fb56d424dc09f3"
     },
     "purrr": {
       "Package": "purrr",
