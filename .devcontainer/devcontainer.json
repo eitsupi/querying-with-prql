@@ -14,7 +14,8 @@
 		"vscode": {
 			"extensions": [
 				"editorconfig.editorconfig",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"prql-lang.prql-vscode"
 			]
 		}
 	},
