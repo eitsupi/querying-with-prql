@@ -1,0 +1,58 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - _quarto.yml
+      - docusaurus.config.js
+      - sidebars.js
+  pull_request:
+    paths:
+      - .github/workflows/main.yml
+      - "docs/**"
+      - _quarto.yml
+      - docusaurus.config.js
+      - sidebars.js
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install devcontainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Start dev container
+        run: devcontainer up --workspace-folder .
+
+      - name: Quarto render
+        run: devcontainer exec --workspace-folder . quarto render
+
+      - name: Docusaurus build
+        run: devcontainer exec --workspace-folder . npm run build
+
+      - name: Upload artifact
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+
+      - name: Deploy to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/main'}}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: rocker-project.org
