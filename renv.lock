@@ -37,11 +37,12 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.5-4.1",
+      "Version": "1.6-1.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "R",
+        "grDevices",
         "graphics",
         "grid",
         "lattice",
@@ -49,7 +50,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "38082d362d317745fb932e13956dccbb"
+      "Hash": "1a00d4828f33a9d690806e98bd17150c"
     },
     "R6": {
       "Package": "R6",
@@ -246,7 +247,7 @@
     },
     "duckdb": {
       "Package": "duckdb",
-      "Version": "0.8.1-1",
+      "Version": "0.9.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -255,7 +256,7 @@
         "methods",
         "utils"
       ],
-      "Hash": "a066bd8c5d84b5a6bf7dc5f24109d85c"
+      "Hash": "41cf0b05be7591ac452e9e41d7591d33"
     },
     "ellipsis": {
       "Package": "ellipsis",
@@ -281,7 +282,7 @@
     },
     "fansi": {
       "Package": "fansi",
-      "Version": "1.0.4",
+      "Version": "1.0.5",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -289,7 +290,7 @@
         "grDevices",
         "utils"
       ],
-      "Hash": "1d9e7ad3c8312a192dea7d3db0274fde"
+      "Hash": "3e8583a60163b4bc1a80016e63b9959e"
     },
     "farver": {
       "Package": "farver",
@@ -341,7 +342,7 @@
     },
     "ggplot2": {
       "Package": "ggplot2",
-      "Version": "3.4.2",
+      "Version": "3.4.4",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -362,7 +363,7 @@
         "vctrs",
         "withr"
       ],
-      "Hash": "3a147ee02e85a8941aad9909f1b43b7b"
+      "Hash": "313d31eff2274ecf4c1d3581db7241f9"
     },
     "glue": {
       "Package": "glue",
@@ -377,7 +378,7 @@
     },
     "gtable": {
       "Package": "gtable",
-      "Version": "0.3.3",
+      "Version": "0.3.4",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -388,7 +389,7 @@
         "lifecycle",
         "rlang"
       ],
-      "Hash": "b44addadb528a0d227794121c00572a0"
+      "Hash": "b29cf3031f49b04ab9c852c912547eef"
     },
     "highr": {
       "Package": "highr",
@@ -518,20 +519,20 @@
     },
     "labeling": {
       "Package": "labeling",
-      "Version": "0.4.2",
+      "Version": "0.4.3",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "graphics",
         "stats"
       ],
-      "Hash": "3d5108641f47470611a32d0bdf357a72"
+      "Hash": "b64ec208ac5bc1852b285f665d6368b3"
     },
     "lattice": {
       "Package": "lattice",
-      "Version": "0.21-8",
+      "Version": "0.21-9",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "grDevices",
@@ -540,7 +541,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "0b8a6d63c8770f02a8b5635f3c431e6b"
+      "Hash": "5558c61e0136e247252f5f952cdaad6a"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -591,9 +592,9 @@
     },
     "mgcv": {
       "Package": "mgcv",
-      "Version": "1.8-42",
+      "Version": "1.9-0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "Matrix",
         "R",
@@ -604,7 +605,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "3460beba7ccc8946249ba35327ba902a"
+      "Hash": "086028ca0460d0c368028d3bda58f31b"
     },
     "mime": {
       "Package": "mime",
@@ -629,9 +630,9 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-162",
+      "Version": "3.1-163",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "graphics",
@@ -639,7 +640,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "0984ce8da8da9ead8643c5cbbb60f83e"
+      "Hash": "8d1938040a05566f4f7a14af4feadd6b"
     },
     "openssl": {
       "Package": "openssl",
@@ -700,13 +701,13 @@
     },
     "prqlr": {
       "Package": "prqlr",
-      "Version": "0.5.0",
+      "Version": "0.5.4",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "R"
       ],
-      "Hash": "6711bb14770a7b8419fb56d424dc09f3"
+      "Hash": "a3bf05aa4e597c3226324bea775f123f"
     },
     "purrr": {
       "Package": "purrr",
@@ -1031,7 +1032,7 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.6.3",
+      "Version": "0.6.4",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -1041,7 +1042,7 @@
         "lifecycle",
         "rlang"
       ],
-      "Hash": "d0ef2856b83dc33ea6e255caf6229ee2"
+      "Hash": "266c1ca411266ba8f365fcc726444b87"
     },
     "viridisLite": {
       "Package": "viridisLite",
@@ -1091,7 +1092,7 @@
     },
     "withr": {
       "Package": "withr",
-      "Version": "2.5.0",
+      "Version": "2.5.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -1100,7 +1101,7 @@
         "graphics",
         "stats"
       ],
-      "Hash": "c0e49a9760983e81e55cdd9be92e7182"
+      "Hash": "d77c6f74be05c33164e33fbc85540cae"
     },
     "xfun": {
       "Package": "xfun",
