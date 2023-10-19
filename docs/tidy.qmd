@@ -238,7 +238,7 @@ games |>
 ```{python}
 #| cache: false
 games = (
-    lf.filter(~pl.any(pl.all().is_null())) # Also can use `polars.LazyFrame.drop_nulls`
+    lf.filter(~pl.any_horizontal(pl.all().is_null())) # Also can use `polars.LazyFrame.drop_nulls`
     .with_columns(
         pl.col("date").str.strptime(pl.Date, "%a, %b %d, %Y"),
     )
