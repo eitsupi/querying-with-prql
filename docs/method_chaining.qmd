@@ -135,12 +135,20 @@ The column name (here `FlightDate`) cannot be used in the function definition of
 
 #### PRQL DuckDB
 
+:::{.callout-note}
+
+`::VARCHAR`s in `TRY_CAST` are workarounds for a bug in DuckDB 0.9.1.
+([duckdb/duckdb#9380](https://github.com/duckdb/duckdb/issues/9380))
+
+:::
+
+
 ```{r}
 #| echo: false
 .prql_func_time_to_datetime <- r"(let time_to_datetime = string -> s"""
   FlightDate::TIMESTAMP +
-  TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
-  TRY_CAST(regexp_replace({string}, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
+  TRY_CAST(regexp_replace({string}::VARCHAR, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
+  TRY_CAST(regexp_replace({string}::VARCHAR, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
 """)"
 ```
 
@@ -160,12 +168,19 @@ take 5
 
 #### SQL DuckDB
 
+:::{.callout-note}
+
+`::VARCHAR`s in `TRY_CAST` are workarounds for a bug in DuckDB 0.9.1.
+([duckdb/duckdb#9380](https://github.com/duckdb/duckdb/issues/9380))
+
+:::
+
 ```{sql}
 #| cache: false
 CREATE MACRO time_to_datetime(date, string) AS
   date::TIMESTAMP +
-  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
-  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
+  TRY_CAST(regexp_replace(string::VARCHAR, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
+  TRY_CAST(regexp_replace(string::VARCHAR, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
 ```
 
 The function works as follows:
