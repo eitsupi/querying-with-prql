@@ -149,10 +149,10 @@ let f = from [
 from f
 select {
   a, # Note: can't use `derive` here https://github.com/PRQL/prql/issues/3130
-  b = case {
+  b = case [
     a <= 3 => b // 10,
     true => b
-  }
+  ]
 }
 ```
 
