@@ -93,17 +93,13 @@ lf.select("Dest", "Tail_Number").slice(12, 4).collect()
 
 ## Filtering Rows
 
-Since PRQL does not have something like the `IN` operator of SQL now
-([PRQL/prql#993](https://github.com/PRQL/prql/issues/993)),
-the `filter` statement in PRQL is a bit redundant.
-
 :::{.panel-tabset}
 
 ### PRQL DuckDB
 
 ```{prql}
 from tab
-filter IATA_CODE_Reporting_Airline == 'AA' || IATA_CODE_Reporting_Airline == 'DL'
+filter (IATA_CODE_Reporting_Airline | in ["AA", "DL"])
 take 5
 ```
 
@@ -149,10 +145,10 @@ let f = from [
 from f
 select {
   a, # Note: can't use `derive` here https://github.com/PRQL/prql/issues/3130
-  b = case {
+  b = case [
     a <= 3 => b // 10,
     true => b
-  }
+  ]
 }
 ```
 

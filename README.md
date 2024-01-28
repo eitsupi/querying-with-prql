@@ -8,7 +8,7 @@ Please check the [devcontainer.json](.devcontainer/devcontainer.json) file.
 Build by
 
 ```sh
-quarto render --cache-refresh
+quarto render --cache-refresh --columns=1000 # https://github.com/quarto-dev/quarto-cli/issues/8332
 ```
 
 And deploy by

@@ -418,7 +418,7 @@ In R, we can also use dedicated functions like
 
 :::{.callout-important}
 
-This example does not work with prql-compiler 0.9.2.
+This example does not work with prql-compiler 0.11.1.
 ([PRQL/prql#3129](https://github.com/PRQL/prql/issues/3129))
 
 :::
@@ -577,7 +577,7 @@ roll_and_expand = lf.sort("time").select(
         pl.col("time"),
         close.alias("Raw"),
         close.rolling_mean(28).alias("28D MA"),
-        close.alias("Expanding Average").cumsum() / (close.cumcount() + 1),
+        close.alias("Expanding Average").cum_sum() / (close.cum_count() + 1),
     ]
 )
 ```

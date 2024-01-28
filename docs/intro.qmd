@@ -48,7 +48,7 @@ the knitr document wll output to a separate md file and imported here using the 
 
 
 ```{=mdx}
-import VesionInfo from './_info.md';
+import VesionInfo from './_info.mdx';
 
 <VesionInfo/>
 ```
