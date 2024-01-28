@@ -243,7 +243,7 @@ games = (
         pl.col("date").str.strptime(pl.Date, "%a, %b %d, %Y"),
     )
     .sort("date")
-    .with_row_count("game_id")
+    .with_row_index("game_id")
     .collect()
 )
 ```
@@ -389,7 +389,9 @@ tidy = (
         value_name="team",
     )
     .sort("game_id")
-    .with_columns(rest=(pl.col("date").diff().over("team").dt.days() - 1).cast(pl.Int8))
+    .with_columns(
+      rest=(pl.col("date").diff().over("team").dt.total_days() - 1).cast(pl.Int8)
+    )
     .drop_nulls("rest")
 )
 ```

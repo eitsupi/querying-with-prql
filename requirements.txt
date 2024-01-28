@@ -1,2 +1,2 @@
-polars[pyarrow]==0.20.3
+polars[pyarrow]==0.20.6
 pyprql==0.11.0
