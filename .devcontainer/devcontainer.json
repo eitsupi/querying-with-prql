@@ -2,7 +2,7 @@
 	"image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
 	"features": {
 		"ghcr.io/rocker-org/devcontainer-features/quarto-cli": {
-			"version": "1.4.548"
+			"version": "1.4.549"
 		},
 		"ghcr.io/eitsupi/devcontainer-features/go-task": {},
 		"ghcr.io/devcontainers/features/node": {},
