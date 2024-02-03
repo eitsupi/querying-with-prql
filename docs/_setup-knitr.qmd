@@ -4,6 +4,7 @@
 library(knitr)
 library(glue)
 library(prqlr)
+library(reticulate)
 
 # Set SQL code blocks print option
 knitr::opts_knit$set(sql.print = \(x) paste(knitr::kable(x, format = "markdown"), collapse = "\n"))

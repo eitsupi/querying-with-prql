@@ -1,6 +1,6 @@
 ---
 engine: knitr
-output-file: _info.md
+output-file: _info.mdx
 ---
 
 :::{.callout-important}
