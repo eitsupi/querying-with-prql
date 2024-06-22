@@ -72,12 +72,14 @@ Run `load_ext` magic to activate PRQL magic (from [pyprql](https://pyprql.readth
 and SQL magic (from [jupysql](https://jupysql.ploomber.io/)).
 
 ```{python}
+#| filename: IPython
 #| output: false
 %load_ext pyprql.magic
 %load_ext sql
 ```
 
 ```{python}
+#| filename: IPython
 #| include: false
 %config SqlMagic.displaycon = False
 %config SqlMagic.feedback = False
@@ -87,6 +89,7 @@ Use SQL magic connects to DuckDB in-memory database.
 Note that PRQL magic shares the connection with SQL magic.
 
 ```{python}
+#| filename: IPython
 %sql duckdb://
 ```
 
@@ -94,15 +97,17 @@ To fix the SQL dialect used inside PRQL magic, we need to set the target with co
 By setting `"sql.duckdb"` here, we can specify to the PRQL compiler that it should generate optimized SQL for DuckDB.
 
 ```{python}
+#| filename: IPython
 %config PrqlMagic.target = "sql.duckdb"
 ```
 
-All available targets can be found in the `prql_python.get_targets` function.
+All available targets can be found in the `prqlc.get_targets` function.
 
 ```{python}
-import prql_python as prql
+#| filename: IPython
+import prqlc
 
-print(prql.get_targets())
+print(prqlc.get_targets())
 ```
 
 ### Combine DuckDB and Polars
@@ -110,6 +115,7 @@ print(prql.get_targets())
 By setting `autopolars` config, the results of PRQL and SQL executions can be converted to polars.DataFrame.
 
 ```{python}
+#| filename: IPython
 #| output: false
 %config PrqlMagic.autopolars = True
 %config SqlMagic.autopolars = True
@@ -119,6 +125,7 @@ Also, since DuckDB can execute queries against polars.DataFrame and polars.LazyF
 these can be referenced directly from PRQL or SQL, as shown below.
 
 ```{python}
+#| filename: IPython
 import polars as pl
 
 lf = pl.LazyFrame({"a": list(range(1, 6))})
@@ -129,6 +136,7 @@ lf = pl.LazyFrame({"a": list(range(1, 6))})
 #### PRQL DuckDB
 
 ```{python}
+#| filename: IPython
 %%prql
 from lf
 derive b = a * 5
@@ -138,6 +146,7 @@ take 3
 #### SQL DuckDB
 
 ```{python}
+#| filename: IPython
 %%sql
 SELECT
   a,
@@ -149,6 +158,7 @@ LIMIT 3
 #### Python Polars
 
 ```{python}
+#| filename: IPython
 lf.with_columns(b=pl.col("a") * 5).head(3).collect()
 ```
 

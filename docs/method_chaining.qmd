@@ -64,6 +64,7 @@ but DuckDB SQL differs in that the column names are updated and that behavior ca
 ```
 
 ```{prql}
+#| filename: PRQL
 {{.prql_func_extract_city_name}}
 
 from tab
@@ -77,6 +78,7 @@ take 5
 #### SQL DuckDB
 
 ```{sql}
+#| filename: SQL
 #| cache: false
 CREATE MACRO extract_city_name(col) AS regexp_replace(col, ',.*', '')
 ```
@@ -84,6 +86,7 @@ CREATE MACRO extract_city_name(col) AS regexp_replace(col, ',.*', '')
 The function works as follows:
 
 ```{glue_sql}
+#| filename: SQL
 SELECT
   extract_city_name(COLUMNS(['OriginCityName', 'DestCityName']))
 FROM
@@ -94,6 +97,7 @@ LIMIT 5
 #### dplyr R
 
 ```{r}
+#| filename: R
 #| cache: false
 extract_city_name <- function(col) stringr::str_remove(col, ",.*")
 ```
@@ -101,6 +105,7 @@ extract_city_name <- function(col) stringr::str_remove(col, ",.*")
 The function works as follows:
 
 ```{r}
+#| filename: R
 df |>
   head(5) |>
   mutate(
@@ -112,6 +117,7 @@ df |>
 #### Python Polars
 
 ```{python}
+#| filename: Python
 #| cache: false
 def extract_city_name(cols: list[str]) -> pl.Expr:
     return pl.col(cols).str.replace(",.*", "")
@@ -120,6 +126,7 @@ def extract_city_name(cols: list[str]) -> pl.Expr:
 The function works as follows:
 
 ```{python}
+#| filename: Python
 lf.fetch(5).select(extract_city_name(["OriginCityName", "DestCityName"]))
 ```
 
@@ -153,6 +160,7 @@ The column name (here `FlightDate`) cannot be used in the function definition of
 ```
 
 ```{prql}
+#| filename: PRQL
 {{.prql_func_time_to_datetime}}
 
 from tab
@@ -168,24 +176,19 @@ take 5
 
 #### SQL DuckDB
 
-:::{.callout-note}
-
-`::VARCHAR`s in `TRY_CAST` are workarounds for a bug in DuckDB 0.9.1.
-([duckdb/duckdb#9380](https://github.com/duckdb/duckdb/issues/9380))
-
-:::
-
 ```{sql}
+#| filename: SQL
 #| cache: false
 CREATE MACRO time_to_datetime(date, string) AS
   date::TIMESTAMP +
-  TRY_CAST(regexp_replace(string::VARCHAR, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
-  TRY_CAST(regexp_replace(string::VARCHAR, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
+  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(1, 2).concat(' hours') AS INTERVAL) +
+  TRY_CAST(regexp_replace(string, '^2400$', '0000').substr(3, 2).concat(' minutes') AS INTERVAL)
 ```
 
 The function works as follows:
 
 ```{glue_sql}
+#| filename: SQL
 SELECT
   FlightDate,
   time_to_datetime(FlightDate, DepTime) AS DepTime,
@@ -200,6 +203,7 @@ LIMIT 5
 A function returns a single column.
 
 ```{r}
+#| filename: R
 #| cache: false
 time_col <- function(col) {
   col |>
@@ -217,6 +221,7 @@ time_col <- function(col) {
 A function returns a DataFrame.
 
 ```{r}
+#| filename: R
 #| cache: false
 time_to_datetime <- function(df, columns) {
   df |>
@@ -227,6 +232,7 @@ time_to_datetime <- function(df, columns) {
 The function works as follows:
 
 ```{r}
+#| filename: R
 df |>
   head(5) |>
   select(FlightDate, DepTime) |>
@@ -239,6 +245,7 @@ df |>
 A function returns a single `polars.Expr`.
 
 ```{python}
+#| filename: Python
 #| cache: false
 def time_col(col: str) -> pl.Expr:
     col_expr = pl.col(col)
@@ -254,6 +261,7 @@ def time_col(col: str) -> pl.Expr:
 A function returns a list of `polars.Expr`.
 
 ```{python}
+#| filename: Python
 #| cache: false
 def time_to_datetime(columns: list[str]) -> list[pl.Expr]:
     date_col = pl.col("FlightDate")
@@ -263,6 +271,7 @@ def time_to_datetime(columns: list[str]) -> list[pl.Expr]:
 The function works as follows:
 
 ```{python}
+#| filename: Python
 lf.fetch(5).select(["FlightDate", "DepTime"]).with_columns(
     DepTimeOld=pl.col("DepTime"), *time_to_datetime(["DepTime"])
 )
@@ -280,6 +289,7 @@ which can then be referenced in the query.
 ### PRQL DuckDB
 
 ```{prql}
+#| filename: PRQL
 {{.prql_func_extract_city_name}}
 
 {{.prql_func_time_to_datetime}}
@@ -307,6 +317,7 @@ take 5
 ### SQL DuckDB
 
 ```{glue_sql}
+#| filename: SQL
 SELECT
   Dest,
   Tail_Number,
@@ -334,6 +345,7 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
+#| filename: R
 category_cols <- c(
   "Dest",
   "Tail_Number",
@@ -369,6 +381,7 @@ df |>
 ### Python Polars
 
 ```{python}
+#| filename: Python
 category_cols = [
     "Dest",
     "Tail_Number",

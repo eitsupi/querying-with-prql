@@ -14,6 +14,7 @@ create the Parquet file (with DuckDB CLI).
 #### R
 
 ```{r}
+#| filename: R
 #| cache: false
 #| code-fold: true
 #| warning: false
@@ -69,24 +70,28 @@ load it into DuckDB (in-memory) database table, R DataFrame, and Python polars.L
 #### DuckDB
 
 ```{r}
+#| filename: R
 #| cache: false
 #| include: false
 con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
 ```
 
 ```{glue_sql}
+#| filename: SQL
 #| cache: false
 #| warning: false
 CREATE TABLE tab AS SELECT * FROM 'data/flights.parquet'
 ```
 
 ```{glue_sql}
+#| filename: SQL
 FROM tab LIMIT 5
 ```
 
 #### R DataFrame
 
 ```{r}
+#| filename: R
 #| cache: false
 #| output: false
 library(dplyr, warn.conflicts = FALSE)
@@ -95,12 +100,14 @@ df <- duckdb:::sql("FROM 'data/flights.parquet'")
 ```
 
 ```{r}
+#| filename: R
 df |> head(5)
 ```
 
 #### Python polars.LazyFrame
 
 ```{python}
+#| filename: Python
 #| cache: false
 #| output: false
 import polars as pl
@@ -109,6 +116,7 @@ lf = pl.scan_parquet("data/flights.parquet")
 ```
 
 ```{python}
+#| filename: Python
 lf.fetch(5)
 ```
 
