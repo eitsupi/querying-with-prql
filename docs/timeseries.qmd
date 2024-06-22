@@ -38,7 +38,6 @@ but we can also download and use the Parquet file included in the
 #### R
 
 ```{r}
-#| filename: R
 #| cache: false
 #| code-fold: true
 #| warning: false
@@ -112,8 +111,7 @@ After the Parquet file is ready, load that into DuckDB (in-memory) database tabl
 
 #### DuckDB
 
-```{r}
-#| filename: R
+```{r }
 #| cache: false
 #| output: false
 #| echo: false
@@ -121,14 +119,12 @@ con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
 ```
 
 ```{glue_sql}
-#| filename: SQL
 #| cache: false
 #| output: false
 CREATE TABLE tab AS FROM 'data/ohlcv.parquet'
 ```
 
 ```{glue_sql}
-#| filename: SQL
 FROM tab
 LIMIT 5
 ```
@@ -136,7 +132,6 @@ LIMIT 5
 #### R DataFrame
 
 ```{r}
-#| filename: R
 #| cache: false
 #| output: false
 library(dplyr, warn.conflicts = FALSE)
@@ -145,14 +140,12 @@ df <- duckdb:::sql("FROM 'data/ohlcv.parquet'")
 ```
 
 ```{r}
-#| filename: R
 df |> head(5)
 ```
 
 #### Python polars.LazyFrame
 
 ```{python}
-#| filename: Python
 #| cache: false
 #| output: false
 import polars as pl
@@ -161,7 +154,6 @@ lf = pl.scan_parquet("data/ohlcv.parquet")
 ```
 
 ```{python}
-#| filename: Python
 lf.fetch(5)
 ```
 
@@ -174,7 +166,6 @@ lf.fetch(5)
 ### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 #| engine-opts:
 #|   use_glue: false
 from tab
@@ -194,7 +185,6 @@ so I mark this block as `sql` and `cache: false`.
 :::
 
 ```{sql}
---| filename: SQL
 --| cache.lazy: false
 FROM tab
 WHERE date_part(['year', 'month'], time) = {year: 2021, month: 2}
@@ -204,7 +194,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 df |>
   filter(
     lubridate::floor_date(time, "month") == lubridate::make_datetime(2021, 2)
@@ -215,7 +204,6 @@ df |>
 ### Python Polars
 
 ```{python}
-#| filename: Python
 (
     lf.filter((pl.col("time").dt.year() == 2021) & (pl.col("time").dt.month() == 2))
     .head(5)
@@ -238,7 +226,6 @@ and `groupby_dynamic` in Polars have completely different initial starting point
   since the beginning of every month when specifying `"5 days"` to the `unit` argument.
 
   ```{r}
-  #| filename: R
   lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
     lubridate::floor_date("5 days")
   ```
@@ -247,7 +234,6 @@ and `groupby_dynamic` in Polars have completely different initial starting point
   Sunday through Saturday.
 
   ```{r}
-  #| filename: R
   lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
     lubridate::floor_date("1 week")
   ```
@@ -255,23 +241,21 @@ and `groupby_dynamic` in Polars have completely different initial starting point
   To start from an arbitrary origin, all breaks must be specified as a vector in the unit argument.[^floor_date]
 
   ```{r}
-  #| filename: R
   lubridate::as_date(c("2023-01-31", "2023-02-01")) |>
     lubridate::floor_date(lubridate::make_date(2023, 1, 31))
   ```
 
-- `group_by_dynamic` of Polars, the `offset` parameter to specify the origin point, is negative `every` by default.[^group_by_dynamic]
+- `groupby_dynamic` of Polars, the `offset` parameter to specify the origin point, is negative `every` by default.[^groupby_dynamic]
 
 [^time_bucket]: <https://duckdb.org/docs/sql/functions/timestamptz#icu-timestamp-with-time-zone-operators>
 [^floor_date]: <https://github.com/tidyverse/lubridate/issues/932>
-[^group_by_dynamic]: <https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.group_by_dynamic.html#polars.DataFrame.group_by_dynamic>
+[^groupby_dynamic]: <https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.groupby_dynamic.html>
 
 :::{.panel-tabset}
 
 ### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 from tab
 derive {
   time_new = s"""
@@ -294,7 +278,6 @@ take 5
 ### SQL DuckDB
 
 ```{glue_sql}
-#| filename: SQL
 WITH _tab1 AS (
   FROM tab
   SELECT
@@ -313,7 +296,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 df |>
   mutate(
     time = time |>
@@ -326,7 +308,6 @@ df |>
 ### Python Polars
 
 ```{python}
-#| filename: Python
 (
     lf.sort("time")
     .groupby_dynamic("time", every="5d")
@@ -343,7 +324,6 @@ df |>
 ### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 from tab
 derive {
   time_new = s"""
@@ -371,7 +351,6 @@ take 5
 ### SQL DukcDB
 
 ```{glue_sql}
-#| filename: SQL
 WITH _tab1 AS (
   FROM tab
   SELECT
@@ -391,7 +370,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 df |>
   mutate(
     time = time |>
@@ -411,7 +389,6 @@ df |>
 ### Python Polars
 
 ```{python}
-#| filename: Python
 (
     lf.sort("time")
     .groupby_dynamic("time", every="1w")
@@ -446,7 +423,7 @@ This example does not work with prql-compiler 0.11.1.
 
 :::
 
-```{.prql filename=PRQL}
+```{.prql}
 let _tab1 = s"""
   SELECT
     generate_series(
@@ -467,7 +444,6 @@ take 5
 ### SQL DuckDB
 
 ```{glue_sql}
-#| filename: SQL
 WITH _tab1 AS (
   SELECT
     generate_series(
@@ -486,7 +462,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 .grid <- df$time |>
   lubridate::as_datetime() |>
   (\(x) seq(min(x), max(x), by = "6 hours"))() |>
@@ -500,7 +475,6 @@ LIMIT 5
 ### Python Polars
 
 ```{python}
-#| filename: Python
 lf.collect().sort("time").upsample("time", every="6h").head(5)
 ```
 
@@ -536,7 +510,6 @@ But DuckDB does not have a dedicated function to do this, so it is omitted here.
 #### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 from tab
 sort this.time
 window rolling:28 (
@@ -557,7 +530,6 @@ take 26..30
 #### SQL DuckDB
 
 ```{glue_sql}
-#| filename: SQL
 FROM tab
 SELECT
   time,
@@ -576,7 +548,6 @@ LIMIT 5 OFFSET 25
 #### dplyr R
 
 ```{r}
-#| filename: R
 #| cache: false
 roll_and_expand <- df |>
   arrange(time) |>
@@ -591,7 +562,6 @@ roll_and_expand <- df |>
 ```
 
 ```{r}
-#| filename: R
 roll_and_expand |>
   slice(26:30)
 ```
@@ -599,7 +569,6 @@ roll_and_expand |>
 #### Python Polars
 
 ```{python}
-#| filename: Python
 #| cache: false
 close = pl.col("close")
 
@@ -614,7 +583,6 @@ roll_and_expand = lf.sort("time").select(
 ```
 
 ```{python}
-#| filename: Python
 roll_and_expand.head(30).tail(5).collect()
 ```
 
@@ -628,7 +596,6 @@ we need to add further processing.
 Plotting the results of dplyr shows the following.
 
 ```{r}
-#| filename: R
 #| label: plot-window-functions
 #| code-fold: true
 #| warning: false
@@ -653,7 +620,6 @@ roll_and_expand |>
 #### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 from tab
 sort this.time
 window rows:-15..14 (
@@ -669,7 +635,6 @@ take 13..17
 #### SQL DuckDB
 
 ```{glue_sql}
-#| filename: SQL
 FROM tab
 SELECT
   time,
@@ -688,7 +653,6 @@ LIMIT 5 OFFSET 12
 #### dplyr R
 
 ```{r}
-#| filename: R
 #| cache: false
 .slide_func <- function(.x, .fn) {
   slider::slide_vec(.x, .fn, .before = 15, .after = 14, .complete = TRUE)
@@ -708,7 +672,6 @@ mean_std <- df |>
 ```
 
 ```{r}
-#| filename: R
 mean_std |>
   slice(13:17)
 ```
@@ -716,7 +679,6 @@ mean_std |>
 #### Python Polars
 
 ```{python}
-#| filename: Python
 #| cache: false
 mean_std = lf.sort("time").select(
     time=pl.col("time"),
@@ -726,7 +688,6 @@ mean_std = lf.sort("time").select(
 ```
 
 ```{python}
-#| filename: Python
 mean_std.head(17).tail(5).collect()
 ```
 
@@ -737,7 +698,6 @@ As in @sec-moving-ave, here too the DuckDB results differ from the others.
 Plotting the results of dplyr shows the following.
 
 ```{r}
-#| filename: R
 #| label: plot-rolling-combined
 #| code-fold: true
 #| warning: false
@@ -766,14 +726,12 @@ In DuckDB, the icu DuckDB extension is needed for time zones support.
 If the DuckDB client that we are using does not contain the extension, we need to install and load it.
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| warning: false
 INSTALL 'icu'
 ```
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| warning: false
 LOAD 'icu'
@@ -786,7 +744,6 @@ LOAD 'icu'
 ### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 let timezone = tz col -> s"timezone({tz}, {col})"
 
 from tab
@@ -800,7 +757,6 @@ take 5
 ### SQL DuckDB
 
 ```{glue_sql}
-#| filename: SQL
 FROM tab
 SELECT
   * REPLACE timezone('US/Eastern', timezone('UTC', time)) AS time
@@ -810,7 +766,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 df |>
   mutate(
     time = time |>
@@ -823,7 +778,6 @@ df |>
 ### Python Polars
 
 ```{python}
-#| filename: Python
 (
     lf.with_columns(
         pl.col("time")

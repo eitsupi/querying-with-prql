@@ -38,7 +38,6 @@ the [kevinheavey/modern-polars](https://github.com/kevinheavey/modern-polars/tre
 #### R
 
 ```{r}
-#| filename: R
 #| code-fold: true
 #| cache: false
 nba_dir <- file.path("data", "nba")
@@ -116,7 +115,6 @@ R DataFrame, and Python polars.LazyFrame.
 #### DuckDB
 
 ```{r }
-#| filename: R
 #| cache: false
 #| output: false
 #| echo: false
@@ -124,14 +122,12 @@ con <- DBI::dbConnect(duckdb::duckdb(), ":memory:")
 ```
 
 ```{glue_sql}
-#| filename: SQL
 #| cache: false
 #| output: false
 CREATE TABLE tab AS FROM read_csv_auto('data/nba/*.csv')
 ```
 
 ```{glue_sql}
-#| filename: SQL
 FROM tab
 LIMIT 5
 ```
@@ -139,7 +135,6 @@ LIMIT 5
 #### R DataFrame
 
 ```{r}
-#| filename: R
 #| cache: false
 library(dplyr, warn.conflicts = FALSE)
 
@@ -149,14 +144,12 @@ df <- readr::read_csv(
 ```
 
 ```{r}
-#| filename: R
 df |> head(5)
 ```
 
 #### Python polars.LazyFrame
 
 ```{python}
-#| filename: Python
 #| cache: false
 import polars as pl
 
@@ -164,7 +157,6 @@ lf = pl.scan_csv("data/nba/*.csv")
 ```
 
 ```{python}
-#| filename: Python
 lf.head(5).collect()
 ```
 
@@ -183,7 +175,6 @@ but DuckDB SQL does (>= 0.8, [duckdb/duckdb#6621](https://github.com/duckdb/duck
 ### PRQL DuckDB
 
 ```{prql}
-#| filename: PRQL
 #| label: prql_cleaning
 let games = (
   from tab
@@ -201,7 +192,6 @@ take 5
 ### SQL DuckDB
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| output: false
 CREATE TABLE games AS (
@@ -221,7 +211,6 @@ CREATE TABLE games AS (
 ```
 
 ```{glue_sql}
-#| filename: SQL
 FROM games
 LIMIT 5
 ```
@@ -229,7 +218,6 @@ LIMIT 5
 ### dplyr R
 
 ```{r}
-#| filename: R
 games <- df |>
   filter(!if_any(everything(), is.na)) |> # Also can use `tidyr::drop_na`
   mutate(
@@ -241,7 +229,6 @@ games <- df |>
 ```
 
 ```{r}
-#| filename: R
 games |>
   head(5)
 ```
@@ -249,7 +236,6 @@ games |>
 ### Python Polars
 
 ```{python}
-#| filename: Python
 #| cache: false
 games = (
     lf.filter(~pl.any_horizontal(pl.all().is_null())) # Also can use `polars.LazyFrame.drop_nulls`
@@ -263,7 +249,6 @@ games = (
 ```
 
 ```{python}
-#| filename: Python
 games.head(5)
 ```
 
@@ -311,7 +296,6 @@ This transformation is called by names such as unpivot, pivot longer, and melt.
 :::
 
 ```{prql}
-#| filename: PRQL
 from s"""
 SELECT *
 FROM (
@@ -335,7 +319,6 @@ take 5
 #### SQL DuckDB
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| output: false
 CREATE TABLE tidy AS (
@@ -368,7 +351,6 @@ CREATE TABLE tidy AS (
 ```
 
 ```{glue_sql}
-#| filename: SQL
 FROM tidy
 LIMIT 5
 ```
@@ -376,7 +358,6 @@ LIMIT 5
 #### dplyr R
 
 ```{r}
-#| filename: R
 tidy <- games |>
   tidyr::pivot_longer(
     cols = c(away_team, home_team),
@@ -393,7 +374,6 @@ tidy <- games |>
 ```
 
 ```{r}
-#| filename: R
 tidy |>
   head(5)
 ```
@@ -401,7 +381,6 @@ tidy |>
 #### Python Polars
 
 ```{python}
-#| filename: Python
 #| cache: false
 tidy = (
     games.melt(
@@ -418,7 +397,6 @@ tidy = (
 ```
 
 ```{python}
-#| filename: Python
 tidy.head(5)
 ```
 
@@ -444,7 +422,6 @@ and `games` is defiened in @sec-cleaning with SQL.
 :::
 
 ```{prql}
-#| filename: PRQL
 #| label: prql_tidy_nba_2
 from s"""
 SELECT *
@@ -472,7 +449,6 @@ take 5
 #### SQL DuckDB
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| output: false
 CREATE TABLE by_game AS (
@@ -489,7 +465,6 @@ CREATE TABLE by_game AS (
 ```
 
 ```{sql}
---| filename: SQL
 --| cache: false
 --| output: false
 CREATE TABLE joined AS (
@@ -504,7 +479,6 @@ CREATE TABLE joined AS (
 ```
 
 ```{glue_sql}
-#| filename: SQL
 FROM joined
 LIMIT 5
 ```
@@ -512,7 +486,6 @@ LIMIT 5
 #### dplyr R
 
 ```{r}
-#| filename: R
 by_game <- tidy |>
   tidyr::pivot_wider(
     id_cols = c("game_id", "date"),
@@ -533,7 +506,6 @@ joined <- by_game |>
 ```
 
 ```{r}
-#| filename: R
 joined |>
   head(5)
 ```
@@ -541,7 +513,6 @@ joined |>
 #### Python Polars
 
 ```{python}
-#| filename: Python
 by_game = tidy.pivot(
     values="rest", index=["game_id", "date"], columns="variable"
 ).rename({"away_team": "away_rest", "home_team": "home_rest"})
@@ -553,7 +524,6 @@ joined = by_game.join(games, on=["game_id", "date"]).with_columns(
 ```
 
 ```{python}
-#| filename: Python
 joined.head(5)
 ```
 
