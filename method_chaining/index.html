@@ -2,28 +2,46 @@
 <html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-method_chaining" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.4.0">
+<meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">Define Functions | Querying with PRQL</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://eitsupi.github.io/querying-with-prql/method_chaining"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Define Functions | Querying with PRQL"><meta data-rh="true" name="description" content="To eliminate the need to copy and paste the same code,
 it is convenient to make the process a function.
 "><meta data-rh="true" property="og:description" content="To eliminate the need to copy and paste the same code,
 it is convenient to make the process a function.
-"><link data-rh="true" rel="icon" href="/querying-with-prql/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://eitsupi.github.io/querying-with-prql/method_chaining"><link data-rh="true" rel="alternate" href="https://eitsupi.github.io/querying-with-prql/method_chaining" hreflang="en"><link data-rh="true" rel="alternate" href="https://eitsupi.github.io/querying-with-prql/method_chaining" hreflang="x-default"><link rel="stylesheet" href="/querying-with-prql/assets/css/styles.27d9121a.css">
-<script src="/querying-with-prql/assets/js/runtime~main.64496192.js" defer="defer"></script>
-<script src="/querying-with-prql/assets/js/main.47715950.js" defer="defer"></script>
+"><link data-rh="true" rel="icon" href="/querying-with-prql/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://eitsupi.github.io/querying-with-prql/method_chaining"><link data-rh="true" rel="alternate" href="https://eitsupi.github.io/querying-with-prql/method_chaining" hreflang="en"><link data-rh="true" rel="alternate" href="https://eitsupi.github.io/querying-with-prql/method_chaining" hreflang="x-default"><link rel="stylesheet" href="/querying-with-prql/assets/css/styles.b9c102ae.css">
+<script src="/querying-with-prql/assets/js/runtime~main.c5448b36.js" defer="defer"></script>
+<script src="/querying-with-prql/assets/js/main.d831c05e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
-<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/querying-with-prql/"><div class="navbar__logo"><img src="/querying-with-prql/img/logo.svg" alt="Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/querying-with-prql/img/logo.svg" alt="Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Quering with PRQL</b></a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/eitsupi/querying-with-prql" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/">Introduction</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/indexing">Selecting and Filtering</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/querying-with-prql/method_chaining">Define Functions</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/tidy">Reshaping and Tidy Data</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/timeseries">Timeseries</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/querying-with-prql/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Define Functions</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Define Functions</h1></header><div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>This page is based on the chapter <a href="https://kevinheavey.github.io/modern-polars/method_chaining.html" target="_blank" rel="noopener noreferrer">“Method Chaining”</a> of the Modern Polars book.</p></div></div>
-<p>To eliminate the need to copy and paste the same code, it is convenient to make the process a function.</p>
-<p>PRQL can chain functions by <code>|</code> (pipe operator), DuckDB SQL can chain functions by <code>.</code> (DuckDB &gt;= 0.8, <a href="https://github.com/duckdb/duckdb/pull/6725" target="_blank" rel="noopener noreferrer">duckdb/duckdb#6725</a>), and R can chain functions by <code>|&gt;</code> (pipe operator, R &gt;= 4.1). They are defined so that the previous value in the chain becomes the first (DuckDB SQL and R) or the last (PRQL) parameter of the function.</p>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/querying-with-prql/"><div class="navbar__logo"><img src="/querying-with-prql/img/logo.svg" alt="Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/querying-with-prql/img/logo.svg" alt="Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Quering with PRQL</b></a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/eitsupi/querying-with-prql" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/">Introduction</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/indexing">Selecting and Filtering</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/querying-with-prql/method_chaining">Define Functions</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/tidy">Reshaping and Tidy Data</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/querying-with-prql/timeseries">Timeseries</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/querying-with-prql/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Define Functions</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Define Functions</h1></header><div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>This page is based on the chapter <a href="https://kevinheavey.github.io/modern-polars/method_chaining.html" target="_blank" rel="noopener noreferrer">“Method
+Chaining”</a>
+of the Modern Polars book.</p></div></div>
+<p>To eliminate the need to copy and paste the same code, it is convenient
+to make the process a function.</p>
+<p>PRQL can chain functions by <code>|</code> (pipe operator), DuckDB SQL can chain
+functions by <code>.</code> (DuckDB &gt;= 0.8,
+<a href="https://github.com/duckdb/duckdb/pull/6725" target="_blank" rel="noopener noreferrer">duckdb/duckdb#6725</a>), and R
+can chain functions by <code>|&gt;</code> (pipe operator, R &gt;= 4.1). They are defined
+so that the previous value in the chain becomes the first (DuckDB SQL
+and R) or the last (PRQL) parameter of the function.</p>
 <p>In Python, we can chain methods using <code>.</code>.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="preparing-data">Preparing Data<a class="hash-link" aria-label="Direct link to Preparing Data" title="Direct link to Preparing Data" href="/querying-with-prql/method_chaining#preparing-data">​</a></h2>
-<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>Since the PRQL and SQL results shown on this page are after being converted to R DataFrame via knitr, they have been converted from DuckDB types to R types. So <code>NULL</code> in DuckDB is shown as <code>NA</code>.</p></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="download">Download<a class="hash-link" aria-label="Direct link to Download" title="Direct link to Download" href="/querying-with-prql/method_chaining#download">​</a></h3>
-<p>Download the data to be analysis (zipped CSV file) and write the data to a Parquet file.</p>
-<p>This document uses R here, but we can do it in another language, or, manually download and unzip and create the Parquet file (with DuckDB CLI).</p>
-<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Shell</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><details class="code-fold" class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>Code</summary><div><div class="collapsibleContent_i85q"><div class="language-r codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">R</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-r codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token comment" style="color:rgb(105, 112, 152);font-style:italic"># Create &quot;data&quot; directory, download the zip file into the directory, and create a Parquet file.</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">data_dir </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;data&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">dest </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;flights.csv.zip&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">csv_name </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2022_1.csv&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">csv_path </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> csv_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">parquet_path </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;flights.parquet&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">if</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token operator" style="color:rgb(137, 221, 255)">!</span><span class="token plain">fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">file_exists</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">parquet_path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token keyword" style="font-style:italic">if</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token operator" style="color:rgb(137, 221, 255)">!</span><span class="token plain">fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">file_exists</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">dir_create</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    curl</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">curl_download</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2022_1.zip&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      handle </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> curl</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">new_handle</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ssl_verifypeer </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token boolean" style="color:rgb(255, 88, 116)">FALSE</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  unzip</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> csv_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> exdir </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  duckdb</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain">sql</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">glue</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">glue</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;COPY (FROM read_csv_auto(&#x27;{csv_path}&#x27;)) TO &#x27;{parquet_path}&#x27; (FORMAT PARQUET)&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div></details></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>This is a sample command to download the zipped CSV file and covert it to a Parquet file.</p><div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>On Windows, the <code>unzip</code> command is not available by default, so use something like <code>Expand-Archive -Path data/flights.csv.zip -DestinationPath data</code> in PowerShell insead.</p></div></div><div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">Terminal</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token function" style="color:rgb(130, 170, 255)">mkdir</span><span class="token plain"> data</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token function" style="color:rgb(130, 170, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-sL</span><span class="token plain"> https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2022_1.zip </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-o</span><span class="token plain"> data/flights.csv.zip</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token function" style="color:rgb(130, 170, 255)">unzip</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-d</span><span class="token plain"> data data/flights.csv.zip</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">duckdb </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-c</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;COPY (FROM read_csv_auto(&#x27;data/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2022_1.csv&#x27;)) TO &#x27;data/flights.parquet&#x27; (FORMAT PARQUET)&quot;</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="load-the-data">Load the Data<a class="hash-link" aria-label="Direct link to Load the Data" title="Direct link to Load the Data" href="/querying-with-prql/method_chaining#load-the-data">​</a></h3>
-<p>After the Parquet file is ready, load it into DuckDB (in-memory) database table, R DataFrame, and Python polars.LazyFrame.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="preparing-data">Preparing Data<a href="#preparing-data" class="hash-link" aria-label="Direct link to Preparing Data" title="Direct link to Preparing Data">​</a></h2>
+<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>Since the PRQL and SQL results shown on this page are after being
+converted to R DataFrame via knitr, they have been converted from DuckDB
+types to R types. So <code>NULL</code> in DuckDB is shown as <code>NA</code>.</p></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="download">Download<a href="#download" class="hash-link" aria-label="Direct link to Download" title="Direct link to Download">​</a></h3>
+<p>Download the data to be analysis (zipped CSV file) and write the data to
+a Parquet file.</p>
+<p>This document uses R here, but we can do it in another language, or,
+manually download and unzip and create the Parquet file (with DuckDB
+CLI).</p>
+<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Shell</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><details class="code-fold" class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>Code</summary><div><div class="collapsibleContent_i85q"><div class="language-r codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">R</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-r codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token comment" style="color:rgb(105, 112, 152);font-style:italic"># Create &quot;data&quot; directory, download the zip file into the directory, and create a Parquet file.</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">data_dir </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;data&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">dest </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;flights.csv.zip&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">csv_name </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2022_1.csv&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">csv_path </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> csv_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">parquet_path </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> file.path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;flights.parquet&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">if</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token operator" style="color:rgb(137, 221, 255)">!</span><span class="token plain">fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">file_exists</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">parquet_path</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token keyword" style="font-style:italic">if</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token operator" style="color:rgb(137, 221, 255)">!</span><span class="token plain">fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">file_exists</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    fs</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">dir_create</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    curl</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">curl_download</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2022_1.zip&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      handle </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> curl</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">new_handle</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ssl_verifypeer </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token boolean" style="color:rgb(255, 88, 116)">FALSE</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  unzip</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> csv_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> exdir </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> data_dir</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  duckdb</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain">sql</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">glue</span><span class="token operator" style="color:rgb(137, 221, 255)">::</span><span class="token plain">glue</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;COPY (FROM read_csv_auto(&#x27;{csv_path}&#x27;)) TO &#x27;{parquet_path}&#x27; (FORMAT PARQUET)&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div></details></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>This is a sample command to download the zipped CSV file and covert it
+to a Parquet file.</p><div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>On Windows, the <code>unzip</code> command is not available by default, so use
+something like
+<code>Expand-Archive -Path data/flights.csv.zip -DestinationPath data</code> in
+PowerShell insead.</p></div></div><div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">Terminal</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token function" style="color:rgb(130, 170, 255)">mkdir</span><span class="token plain"> data</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token function" style="color:rgb(130, 170, 255)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-sL</span><span class="token plain"> https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2022_1.zip </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-o</span><span class="token plain"> data/flights.csv.zip</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token function" style="color:rgb(130, 170, 255)">unzip</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-d</span><span class="token plain"> data data/flights.csv.zip</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">duckdb </span><span class="token parameter variable" style="color:rgb(191, 199, 213)">-c</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;COPY (FROM read_csv_auto(&#x27;data/On_Time_Reporting_Carrier_On_Time_Performance_(1987_present)_2022_1.csv&#x27;)) TO &#x27;data/flights.parquet&#x27; (FORMAT PARQUET)&quot;</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="load-the-data">Load the Data<a href="#load-the-data" class="hash-link" aria-label="Direct link to Load the Data" title="Direct link to Load the Data">​</a></h3>
+<p>After the Parquet file is ready, load it into DuckDB (in-memory)
+database table, R DataFrame, and Python polars.LazyFrame.</p>
 <div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">R DataFrame</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python polars.LazyFrame</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">SQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">CREATE</span><span class="token plain"> </span><span class="token keyword" style="font-style:italic">TABLE</span><span class="token plain"> tab </span><span class="token keyword" style="font-style:italic">AS</span><span class="token plain"> </span><span class="token keyword" style="font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">*</span><span class="token plain"> </span><span class="token keyword" style="font-style:italic">FROM</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;data/flights.parquet&#x27;</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">SQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">FROM</span><span class="token plain"> tab </span><span class="token keyword" style="font-style:italic">LIMIT</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
 <table>
 <colgroup>
@@ -220,7 +238,7 @@ it is convenient to make the process a function.
 <th style="text-align: left;">Div2Airport</th>
 <th style="text-align: right;">Div2AirportID</th>
 <th style="text-align: right;">Div2AirportSeqID</th>
-<th style="text-align: right;">Div2WheelsOn</th>
+<th style="text-align: left;">Div2WheelsOn</th>
 <th style="text-align: right;">Div2TotalGTime</th>
 <th style="text-align: right;">Div2LongestGTime</th>
 <th style="text-align: left;">Div2WheelsOff</th>
@@ -302,7 +320,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">95</td>
@@ -315,7 +333,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -323,46 +341,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
@@ -414,7 +432,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-2</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">74</td>
@@ -427,7 +445,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -435,46 +453,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
@@ -526,7 +544,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-1</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">81</td>
@@ -539,7 +557,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -547,46 +565,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
@@ -638,7 +656,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">104</td>
@@ -651,7 +669,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -659,46 +677,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
@@ -750,7 +768,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-2</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">65</td>
@@ -763,7 +781,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -771,46 +789,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
@@ -1011,7 +1029,7 @@ it is convenient to make the process a function.
 <th style="text-align: left;">Div2Airport</th>
 <th style="text-align: right;">Div2AirportID</th>
 <th style="text-align: right;">Div2AirportSeqID</th>
-<th style="text-align: right;">Div2WheelsOn</th>
+<th style="text-align: left;">Div2WheelsOn</th>
 <th style="text-align: right;">Div2TotalGTime</th>
 <th style="text-align: right;">Div2LongestGTime</th>
 <th style="text-align: left;">Div2WheelsOff</th>
@@ -1093,7 +1111,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">95</td>
@@ -1106,7 +1124,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -1114,46 +1132,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
@@ -1205,7 +1223,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-2</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">74</td>
@@ -1218,7 +1236,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -1226,46 +1244,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
@@ -1317,7 +1335,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-1</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">81</td>
@@ -1330,7 +1348,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -1338,46 +1356,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
@@ -1429,7 +1447,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">104</td>
@@ -1442,7 +1460,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -1450,46 +1468,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
@@ -1541,7 +1559,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">-2</td>
 <td style="text-align: left;">1300-1359</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">88</td>
 <td style="text-align: right;">65</td>
@@ -1554,7 +1572,7 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">0</td>
@@ -1562,46 +1580,46 @@ it is convenient to make the process a function.
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
@@ -1739,7 +1757,7 @@ it is convenient to make the process a function.
 <th>str</th>
 <th>i64</th>
 <th>i64</th>
-<th>i64</th>
+<th>str</th>
 <th>f64</th>
 <th>f64</th>
 <th>str</th>
@@ -1813,40 +1831,40 @@ it is convenient to make the process a function.
 <td>…</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 </tr>
 <tr class="even">
@@ -1890,40 +1908,40 @@ it is convenient to make the process a function.
 <td>…</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 </tr>
 <tr class="odd">
@@ -1967,40 +1985,40 @@ it is convenient to make the process a function.
 <td>…</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 </tr>
 <tr class="even">
@@ -2044,40 +2062,40 @@ it is convenient to make the process a function.
 <td>…</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 </tr>
 <tr class="odd">
@@ -2121,51 +2139,57 @@ it is convenient to make the process a function.
 <td>…</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
+<td>""</td>
 <td>null</td>
 <td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
-<td>null</td>
+<td>""</td>
+<td>""</td>
 <td>null</td>
 </tr>
 </tbody>
 </table>
 </div><div></div></div></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions" href="/querying-with-prql/method_chaining#functions">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2>
 <p>Define some functions and see if they work.</p>
-<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>PRQL currently does not allow functions to be stored in a separate session or file, and they must always be defined with the main query. (<a href="https://github.com/PRQL/prql/issues/1803" target="_blank" rel="noopener noreferrer">PRQL/prql#1803</a>)</p></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="extract-city-names">Extract City Names<a class="hash-link" aria-label="Direct link to Extract City Names" title="Direct link to Extract City Names" href="/querying-with-prql/method_chaining#extract-city-names">​</a></h3>
-<p>PRQL does not currently have the ability to apply a function to multiple columns at once. (<a href="https://github.com/PRQL/prql/issues/2386" target="_blank" rel="noopener noreferrer">PRQL/prql#2386</a>)</p>
-<p>The others can apply a function to multiple columns at once, but DuckDB SQL differs in that the column names are updated and that behavior cannot be prevented.</p>
+<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>PRQL currently does not allow functions to be stored in a separate
+session or file, and they must always be defined with the main query.
+(<a href="https://github.com/PRQL/prql/issues/1803" target="_blank" rel="noopener noreferrer">PRQL/prql#1803</a>)</p></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="extract-city-names">Extract City Names<a href="#extract-city-names" class="hash-link" aria-label="Direct link to Extract City Names" title="Direct link to Extract City Names">​</a></h3>
+<p>PRQL does not currently have the ability to apply a function to multiple
+columns at once.
+(<a href="https://github.com/PRQL/prql/issues/2386" target="_blank" rel="noopener noreferrer">PRQL/prql#2386</a>)</p>
+<p>The others can apply a function to multiple columns at once, but DuckDB
+SQL differs in that the column names are updated and that behavior
+cannot be prevented.</p>
 <div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">PRQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">SQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">dplyr R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python Polars</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-elm codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">PRQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-elm codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">col</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;regexp_replace({col}, &#x27;,.*&#x27;, &#x27;&#x27;)&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">from</span><span class="token plain"> </span><span class="token hvariable">tab</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">select</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">take</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
 <table>
 <thead>
@@ -2302,10 +2326,11 @@ it is convenient to make the process a function.
 </tbody>
 </table>
 </div><div></div></div></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="timestamp-calculation">Timestamp Calculation<a class="hash-link" aria-label="Direct link to Timestamp Calculation" title="Direct link to Timestamp Calculation" href="/querying-with-prql/method_chaining#timestamp-calculation">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="timestamp-calculation">Timestamp Calculation<a href="#timestamp-calculation" class="hash-link" aria-label="Direct link to Timestamp Calculation" title="Direct link to Timestamp Calculation">​</a></h3>
 <p>PRQL and SQL can only define functions that return a single column.</p>
-<p>The column name (here <code>FlightDate</code>) cannot be used in the function definition of DuckDB SQL.</p>
-<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">PRQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">SQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">dplyr R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python Polars</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-elm codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">PRQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-elm codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">string</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  FlightDate::TIMESTAMP +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}::VARCHAR, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(1, 2).concat(&#x27; hours&#x27;) AS INTERVAL) +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}::VARCHAR, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(3, 2).concat(&#x27; minutes&#x27;) AS INTERVAL)</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">from</span><span class="token plain"> </span><span class="token hvariable">tab</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">select</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTimeOld</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">derive</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTimeOld</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">take</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
+<p>The column name (here <code>FlightDate</code>) cannot be used in the function
+definition of DuckDB SQL.</p>
+<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">PRQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">SQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">dplyr R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python Polars</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-elm codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">PRQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-elm codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">string</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  FlightDate::TIMESTAMP +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(1, 2).concat(&#x27; hours&#x27;) AS INTERVAL) +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(3, 2).concat(&#x27; minutes&#x27;) AS INTERVAL)</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">from</span><span class="token plain"> </span><span class="token hvariable">tab</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">select</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTimeOld</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">derive</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTimeOld</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">take</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
 <table>
 <thead>
 <tr class="header">
@@ -2466,10 +2491,27 @@ it is convenient to make the process a function.
 </tbody>
 </table>
 </div><div></div></div></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="use-functions-in-the-query">Use Functions in the Query<a class="hash-link" aria-label="Direct link to Use Functions in the Query" title="Direct link to Use Functions in the Query" href="/querying-with-prql/method_chaining#use-functions-in-the-query">​</a></h2>
-<p>dplyr and Polars allow column names to be predefined as vectors or lists, which can then be referenced in the query.</p>
-<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">PRQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">SQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">dplyr R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python Polars</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-elm codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">PRQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-elm codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">col</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;regexp_replace({col}, &#x27;,.*&#x27;, &#x27;&#x27;)&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">string</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  FlightDate::TIMESTAMP +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}::VARCHAR, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(1, 2).concat(&#x27; hours&#x27;) AS INTERVAL) +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}::VARCHAR, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(3, 2).concat(&#x27; minutes&#x27;) AS INTERVAL)</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">from</span><span class="token plain"> </span><span class="token hvariable">tab</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">select</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Tail_Number</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">IATA_CODE_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CancellationCode</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">ArrTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">ArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSArrTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSDepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSDepTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Flight_Number_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Origin</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepDelay</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">take</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
-<table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="use-functions-in-the-query">Use Functions in the Query<a href="#use-functions-in-the-query" class="hash-link" aria-label="Direct link to Use Functions in the Query" title="Direct link to Use Functions in the Query">​</a></h2>
+<p>dplyr and Polars allow column names to be predefined as vectors or
+lists, which can then be referenced in the query.</p>
+<div class="tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">PRQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">SQL DuckDB</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">dplyr R</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">Python Polars</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><div class="language-elm codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">PRQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-elm codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">col</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;regexp_replace({col}, &#x27;,.*&#x27;, &#x27;&#x27;)&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">let</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">string</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">-&gt;</span><span class="token plain"> </span><span class="token hvariable">s</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  FlightDate::TIMESTAMP +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(1, 2).concat(&#x27; hours&#x27;) AS INTERVAL) +</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">  TRY_CAST(regexp_replace({string}, &#x27;^2400$&#x27;, &#x27;0000&#x27;).substr(3, 2).concat(&#x27; minutes&#x27;) AS INTERVAL)</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token string" style="color:rgb(195, 232, 141)">&quot;&quot;&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">from</span><span class="token plain"> </span><span class="token hvariable">tab</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">select</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Tail_Number</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">IATA_CODE_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CancellationCode</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DepTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">ArrTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">ArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSArrTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSDepTime</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">time_to_datetime</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">CRSDepTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Flight_Number_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">OriginCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token plain"> </span><span class="token hvariable">extract_city_name</span><span class="token plain"> </span><span class="token constant" style="color:rgb(130, 170, 255)">DestCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">Origin</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token constant" style="color:rgb(130, 170, 255)">DepDelay</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token hvariable">take</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 3%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Dest</th>
@@ -2493,7 +2535,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N119HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-14 12:21:00</td>
 <td style="text-align: left;">2022-01-14 13:56:00</td>
 <td style="text-align: left;">2022-01-14 13:52:00</td>
@@ -2509,7 +2551,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N122HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-15 12:14:00</td>
 <td style="text-align: left;">2022-01-15 13:28:00</td>
 <td style="text-align: left;">2022-01-15 13:52:00</td>
@@ -2525,7 +2567,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N412YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-16 12:18:00</td>
 <td style="text-align: left;">2022-01-16 13:39:00</td>
 <td style="text-align: left;">2022-01-16 13:52:00</td>
@@ -2541,7 +2583,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N405YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-17 12:17:00</td>
 <td style="text-align: left;">2022-01-17 14:01:00</td>
 <td style="text-align: left;">2022-01-17 13:52:00</td>
@@ -2557,7 +2599,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N420YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-18 12:18:00</td>
 <td style="text-align: left;">2022-01-18 13:23:00</td>
 <td style="text-align: left;">2022-01-18 13:52:00</td>
@@ -2572,7 +2614,23 @@ it is convenient to make the process a function.
 </tbody>
 </table>
 </div></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">SQL</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token keyword" style="font-style:italic">SELECT</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  Dest</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  Tail_Number</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  IATA_CODE_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  CancellationCode</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  time_to_datetime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token keyword" style="font-style:italic">COLUMNS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      DepTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      ArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      CRSArrTime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">      CRSDepTime</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  FlightDate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  Flight_Number_Reporting_Airline</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  extract_city_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token keyword" style="font-style:italic">COLUMNS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token plain">OriginCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> DestCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  Origin</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  DepDelay</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">FROM</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  tab</span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token keyword" style="font-style:italic">LIMIT</span><span class="token plain"> </span><span class="token number" style="color:rgb(247, 140, 108)">5</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 3%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Dest</th>
@@ -2596,7 +2654,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N119HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-14 12:24:00</td>
 <td style="text-align: left;">2022-01-14 12:21:00</td>
 <td style="text-align: left;">2022-01-14 13:52:00</td>
@@ -2612,7 +2670,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N122HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-15 12:24:00</td>
 <td style="text-align: left;">2022-01-15 12:14:00</td>
 <td style="text-align: left;">2022-01-15 13:52:00</td>
@@ -2628,7 +2686,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N412YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-16 12:24:00</td>
 <td style="text-align: left;">2022-01-16 12:18:00</td>
 <td style="text-align: left;">2022-01-16 13:52:00</td>
@@ -2644,7 +2702,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N405YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-17 12:24:00</td>
 <td style="text-align: left;">2022-01-17 12:17:00</td>
 <td style="text-align: left;">2022-01-17 13:52:00</td>
@@ -2660,7 +2718,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N420YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-18 12:24:00</td>
 <td style="text-align: left;">2022-01-18 12:18:00</td>
 <td style="text-align: left;">2022-01-18 13:52:00</td>
@@ -2675,7 +2733,23 @@ it is convenient to make the process a function.
 </tbody>
 </table>
 </div></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><div class="language-r codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockTitle_Ktv7">R</div><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-r codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv codeBlockLinesWithNumbering_o6Pm"><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">category_cols </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> c</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;Dest&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;Tail_Number&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;IATA_CODE_Reporting_Airline&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;CancellationCode&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">time_cols </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> c</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;DepTime&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;ArrTime&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;CRSArrTime&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;CRSDepTime&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">cols </span><span class="token operator" style="color:rgb(137, 221, 255)">&lt;-</span><span class="token plain"> c</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  category_cols</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  time_cols</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  c</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;FlightDate&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;Flight_Number_Reporting_Airline&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;OriginCityName&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;DestCityName&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;Origin&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    </span><span class="token string" style="color:rgb(195, 232, 141)">&quot;DepDelay&quot;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain"></span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain" style="display:inline-block"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">df </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  select</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">all_of</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">cols</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  mutate</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    across</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token plain"> category_cols </span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> as.factor</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">    across</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">c</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">OriginCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> DestCityName</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> extract_city_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  time_to_datetime</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">time_cols</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token operator" style="color:rgb(137, 221, 255)">&gt;</span><span class="token plain"></span></span><br></span><span class="token-line codeLine_lJS_" style="color:#bfc7d5"><span class="codeLineNumber_Tfdd"></span><span class="codeLineContent_feaV"><span class="token plain">  head</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token number" style="color:rgb(247, 140, 108)">5</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 3%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Dest</th>
@@ -2699,7 +2773,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N119HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-14 12:21:00</td>
 <td style="text-align: left;">2022-01-14 13:56:00</td>
 <td style="text-align: left;">2022-01-14 13:52:00</td>
@@ -2715,7 +2789,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N122HQ</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-15 12:14:00</td>
 <td style="text-align: left;">2022-01-15 13:28:00</td>
 <td style="text-align: left;">2022-01-15 13:52:00</td>
@@ -2731,7 +2805,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N412YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-16 12:18:00</td>
 <td style="text-align: left;">2022-01-16 13:39:00</td>
 <td style="text-align: left;">2022-01-16 13:52:00</td>
@@ -2747,7 +2821,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N405YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-17 12:17:00</td>
 <td style="text-align: left;">2022-01-17 14:01:00</td>
 <td style="text-align: left;">2022-01-17 13:52:00</td>
@@ -2763,7 +2837,7 @@ it is convenient to make the process a function.
 <td style="text-align: left;">DCA</td>
 <td style="text-align: left;">N420YX</td>
 <td style="text-align: left;">YX</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">2022-01-18 12:18:00</td>
 <td style="text-align: left;">2022-01-18 13:23:00</td>
 <td style="text-align: left;">2022-01-18 13:52:00</td>
@@ -2825,7 +2899,7 @@ it is convenient to make the process a function.
 <td>"DCA"</td>
 <td>"N119HQ"</td>
 <td>"YX"</td>
-<td>null</td>
+<td>""</td>
 <td>2022-01-14 12:21:00</td>
 <td>2022-01-14 13:56:00</td>
 <td>2022-01-14 13:52:00</td>
@@ -2841,7 +2915,7 @@ it is convenient to make the process a function.
 <td>"DCA"</td>
 <td>"N122HQ"</td>
 <td>"YX"</td>
-<td>null</td>
+<td>""</td>
 <td>2022-01-15 12:14:00</td>
 <td>2022-01-15 13:28:00</td>
 <td>2022-01-15 13:52:00</td>
@@ -2857,7 +2931,7 @@ it is convenient to make the process a function.
 <td>"DCA"</td>
 <td>"N412YX"</td>
 <td>"YX"</td>
-<td>null</td>
+<td>""</td>
 <td>2022-01-16 12:18:00</td>
 <td>2022-01-16 13:39:00</td>
 <td>2022-01-16 13:52:00</td>
@@ -2873,7 +2947,7 @@ it is convenient to make the process a function.
 <td>"DCA"</td>
 <td>"N405YX"</td>
 <td>"YX"</td>
-<td>null</td>
+<td>""</td>
 <td>2022-01-17 12:17:00</td>
 <td>2022-01-17 14:01:00</td>
 <td>2022-01-17 13:52:00</td>
@@ -2889,7 +2963,7 @@ it is convenient to make the process a function.
 <td>"DCA"</td>
 <td>"N420YX"</td>
 <td>"YX"</td>
-<td>null</td>
+<td>""</td>
 <td>2022-01-18 12:18:00</td>
 <td>2022-01-18 13:23:00</td>
 <td>2022-01-18 13:52:00</td>
@@ -2903,6 +2977,6 @@ it is convenient to make the process a function.
 </tr>
 </tbody>
 </table>
-</div><div></div></div></div></div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/querying-with-prql/indexing"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Selecting and Filtering</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/querying-with-prql/tidy"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Reshaping and Tidy Data</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#preparing-data">Preparing Data</a><ul><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#download">Download</a></li><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#load-the-data">Load the Data</a></li></ul></li><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#functions">Functions</a><ul><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#extract-city-names">Extract City Names</a></li><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#timestamp-calculation">Timestamp Calculation</a></li></ul></li><li><a class="table-of-contents__link toc-highlight" href="/querying-with-prql/method_chaining#use-functions-in-the-query">Use Functions in the Query</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">PRQL</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://prql-lang.org/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Website<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/PRQL/prql" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://prql-lang.org/book/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Language book<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://prql-lang.org/playground/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Playground<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 @eitsupi. Built with Quarto and Docusaurus.</div></div></div></footer></div>
+</div><div></div></div></div></div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/querying-with-prql/indexing"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Selecting and Filtering</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/querying-with-prql/tidy"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Reshaping and Tidy Data</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#preparing-data" class="table-of-contents__link toc-highlight">Preparing Data</a><ul><li><a href="#download" class="table-of-contents__link toc-highlight">Download</a></li><li><a href="#load-the-data" class="table-of-contents__link toc-highlight">Load the Data</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#extract-city-names" class="table-of-contents__link toc-highlight">Extract City Names</a></li><li><a href="#timestamp-calculation" class="table-of-contents__link toc-highlight">Timestamp Calculation</a></li></ul></li><li><a href="#use-functions-in-the-query" class="table-of-contents__link toc-highlight">Use Functions in the Query</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">PRQL</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://prql-lang.org/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Website<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/PRQL/prql" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://prql-lang.org/book/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Language book<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://prql-lang.org/playground/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Playground<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 @eitsupi. Built with Quarto and Docusaurus.</div></div></div></footer></div>
 </body>
 </html>
