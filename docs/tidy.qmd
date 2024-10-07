@@ -404,9 +404,9 @@ tidy |>
 #| filename: Python
 #| cache: false
 tidy = (
-    games.melt(
-        id_vars=["game_id", "date"],
-        value_vars=["away_team", "home_team"],
+    games.unpivot(
+        index=["game_id", "date"],
+        on=["away_team", "home_team"],
         value_name="team",
     )
     .sort("game_id")
@@ -543,7 +543,7 @@ joined |>
 ```{python}
 #| filename: Python
 by_game = tidy.pivot(
-    values="rest", index=["game_id", "date"], columns="variable"
+    values="rest", index=["game_id", "date"], on="variable"
 ).rename({"away_team": "away_rest", "home_team": "home_rest"})
 
 joined = by_game.join(games, on=["game_id", "date"]).with_columns(
