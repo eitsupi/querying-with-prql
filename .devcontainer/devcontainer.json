@@ -2,7 +2,7 @@
 	"image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
 	"features": {
 		"ghcr.io/rocker-org/devcontainer-features/quarto-cli": {
-			"version": "1.5.47"
+			"version": "1.5.57"
 		},
 		"ghcr.io/eitsupi/devcontainer-features/go-task": {},
 		"ghcr.io/devcontainers/features/node": {},
@@ -25,6 +25,7 @@
 		"npm-packages": "npm install"
 	},
 	"containerEnv": {
+		"NOT_CRAN": "true",
 		// "RENV_CONFIG_PAK_ENABLED": "TRUE"
 		"RENV_CONFIG_SANDBOX_ENABLED": "FALSE"
 	}

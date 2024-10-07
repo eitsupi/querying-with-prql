@@ -219,7 +219,7 @@ It is important to note carefully how units such as `5 days` or `1 week` actuall
 In other words, where to start counting `5 days` or `1 week` could be completely different in each system.
 
 Here, we should note that `time_bucket` in DuckDB, `lubridate::floor_date` in R,
-and `groupby_dynamic` in Polars have completely different initial starting points by default.
+and `group_by_dynamic` in Polars have completely different initial starting points by default.
 
 - The DuckDB function `time_bucket`'s origin defaults to `2000-01-03 00:00:00+00` for days or weeks interval.[^time_bucket]
 - In the R `lubridate::floor_date` function, timestamp is floored using the number of days elapsed
@@ -245,11 +245,11 @@ and `groupby_dynamic` in Polars have completely different initial starting point
     lubridate::floor_date(lubridate::make_date(2023, 1, 31))
   ```
 
-- `groupby_dynamic` of Polars, the `offset` parameter to specify the origin point, is negative `every` by default.[^groupby_dynamic]
+- `group_by_dynamic` of Polars, the `offset` parameter to specify the origin point, is negative `every` by default.[^group_by_dynamic]
 
 [^time_bucket]: <https://duckdb.org/docs/sql/functions/timestamptz#icu-timestamp-with-time-zone-operators>
 [^floor_date]: <https://github.com/tidyverse/lubridate/issues/932>
-[^groupby_dynamic]: <https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.groupby_dynamic.html>
+[^group_by_dynamic]: <https://pola-rs.github.io/polars/py-polars/html/reference/dataframe/api/polars.DataFrame.group_by_dynamic.html>
 
 :::{.panel-tabset}
 
@@ -310,7 +310,7 @@ df |>
 ```{python}
 (
     lf.sort("time")
-    .groupby_dynamic("time", every="5d")
+    .group_by_dynamic("time", every="5d")
     .agg(pl.col(pl.Float64).mean())
     .head(5)
     .collect()
@@ -391,11 +391,11 @@ df |>
 ```{python}
 (
     lf.sort("time")
-    .groupby_dynamic("time", every="1w")
+    .group_by_dynamic("time", every="1w")
     .agg(
         [
-            pl.col(pl.Float64).mean().suffix("_mean"),
-            pl.col(pl.Float64).sum().suffix("_sum"),
+            pl.col(pl.Float64).mean().name.suffix("_mean"),
+            pl.col(pl.Float64).sum().name.suffix("_sum"),
         ]
     )
     .head(5)

@@ -131,6 +131,19 @@ import polars as pl
 lf = pl.LazyFrame({"a": list(range(1, 6))})
 ```
 
+:::{.callout-important}
+
+With JupySQL 0.10.14 and DuckDB 1.1, the following setting is needed to scan all frames in Python.
+
+```{python}
+#| filename: IPython
+#| output: false
+%%sql
+set python_scan_all_frames=true
+```
+
+:::
+
 :::{.panel-tabset}
 
 #### PRQL DuckDB
